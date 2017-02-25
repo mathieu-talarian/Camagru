@@ -1,4 +1,5 @@
 <?php
+namespace App;
 
 class Autoloader {
 
@@ -10,11 +11,9 @@ class Autoloader {
 
 
   static function autoload($class) {
-    $class = str_replace(__NAMESPACE__, '\\', '', $class);
+    $class = str_replace(__NAMESPACE__ . '\\', '', $class);
     require __DIR__. '/'  .$class . '.php';
   }
-
-
 }
 
 ?>
