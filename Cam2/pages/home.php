@@ -1,21 +1,11 @@
-    <div class="container">
-      <?php
+<?php
 
-        //   echo '$_SESSION</br>';
-        //   var_dump($_SESSION);
-        // echo '</br>';
-        //
-        //   echo '$_POST</br>';
-        //   var_dump($_POST);
-        //   echo '</br>';
+use App\Table\Article;
 
-      if (!isset($_SESSION['name'])) {
-        echo '<a href="index.php?p=login">Log in</a></br>';
-        echo '<a href="index.php?p=signin">Sign in</a></br>';
-      }
-      else {
-        echo 'Bonjour' . $_SESSION['name'] . '</br>';
-      }
-      ?>
-        <h1>CAMAGRU</h1>
-    </div>
+foreach (Article::getLast() as $post): ?>
+
+    <h2><a href=" <?= $post->url; ?>"><?= $post->titre ?></a></h2>
+    <p><?= $post->extrait; ?></p>
+
+ <?php endforeach; ?>
+

@@ -1,16 +1,19 @@
 <?php
+use App\Autoloader;
 
+error_reporting(-1);
 session_start();
 require('../app/Autoloader.php');
 
-\App\Autoloader::register();
-$db = new \App\Setupdb;
-$db->createdb("mmoullec", "");
-$dbh = $db->get_dbh();
+Autoloader::register();
+
+/*
+ * Initialisation de la database;
+ */
+
 
 echo '<a href="index.php?p=home">Go back home</a></br>';
 
-var_dump($_POST);
 
 if (isset($_GET['p'])) {
   $p = $_GET['p'];
@@ -26,6 +29,9 @@ if ($p === 'home') {
 }
 else if ($p === 'login') {
   require ('../pages/login.php');
+}
+else if ($p === 'article') {
+  require ('../pages/single.php');
 }
 else if ($p === 'signin') {
   require ('../pages/signin.php');
