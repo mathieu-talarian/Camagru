@@ -12,7 +12,7 @@ Autoloader::register();
  */
 
 
-echo '<a href="index.php?p=home">Go back home</a></br>';
+echo '<body><div><a href="index.php?p=home">Go back home</a></div></body>';
 
 
 if (isset($_GET['p'])) {
@@ -35,6 +35,9 @@ else if ($p === 'article') {
 }
 else if ($p === 'signin') {
   require ('../pages/signin.php');
+}
+else if ($p === 'categorie') {
+  require ('../pages/categorie.php');
 }
 $content = ob_get_clean();
 require ('../pages/Template/default.php');
