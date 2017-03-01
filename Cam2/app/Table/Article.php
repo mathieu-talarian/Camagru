@@ -39,7 +39,6 @@ class Article extends Table{
         on categorie_id = categories.id
         Where categorie_id = ?
         ", [$categorie_id]);
-
     }
 
     public static function find($id) {

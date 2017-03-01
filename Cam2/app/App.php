@@ -7,11 +7,29 @@ class App
 {
     /*
      * creation de constantes pour la methode statique
+     * const DB_NAME = 'camagru';
+     * const DB_USER = 'root';
+     * const DB_PASS = 'root';
+     * const DB_HOST = 'localhost';
+     * maintenant récuperé grace au fichier config.php
      */
-    const DB_NAME = 'camagru';
-    const DB_USER = 'root';
-    const DB_PASS = 'root';
-    const DB_HOST = 'localhost';
+
+    /*
+     * variable qui contient l'instance
+     */
+
+    private static $_instance;
+
+
+    /*
+     * fonction qui récupere l'instance
+     */
+    public static function getInstance() {
+        if (self::$_instance === null) {
+            self::$_instance = new App();
+        }
+        return self::$_instance;
+    }
 
     /*
      * variable pour sauvegarder la connection a la DB
@@ -21,7 +39,7 @@ class App
     /*
      * gestion du titre du site
      */
-    private static $title = 'Camagru';
+    public $title = 'Camera';
 
     public static function getTitle() {
         return self::$title;
