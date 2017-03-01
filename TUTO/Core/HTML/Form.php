@@ -9,6 +9,8 @@
 
 namespace  Core\HTML;
 
+use Core\Debug\Debug;
+
 class Form
 {
     /**
@@ -25,8 +27,7 @@ class Form
      * BootstrapForm constructor.
      * @param array $data
      */
-    public function __construct($data = [])
-    {
+    public function __construct($data = []) {
         $this->data = $data;
     }
 
@@ -43,15 +44,21 @@ class Form
      * @return mixed|null
      */
     protected function getValue($key) {
-        return isset($this->data[$key]) ? $this->data[$key] : null;
+        if (is_object($this->data)) {
+            return $this->data->$key;
+        }
+        else {
+            return isset($this->data[$key]) ? $this->data[$key] : null;
+        }
     }
 
     /**
      * @param $name
      * @return string
      */
-    public function input($name) {
-        return $this->surround('<input type="text" 
+    public function input($name, $label, $options = []) {
+        $type = isset($options['type']) ? $options['type'] : 'text';
+        return $this->surround('<input type="' . $type . '" 
         name="' . $name . '"
         value="' . $this->getValue($name) . '"
         >');
@@ -62,5 +69,9 @@ class Form
      */
     public function submit() {
         return $this->surround('<button type="submit">Envoyer</button>');
+    }
+
+    public function test($key) {
+        return $this->getValue($key);
     }
 }

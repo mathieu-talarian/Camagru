@@ -9,19 +9,28 @@
 
 namespace Core\Table;
 
+use Core\Debug\Debug;
 use Core\Database\Database;
 
 class Table
 {
-
+    /**
+     * @var string
+     * nom de la table en cours, peut etre modifiee manuellement
+     * dans la classe qui herite si le nom differe du nom dans la DB
+     */
     protected $table;
 
-    /*
+    /**
+     * @var Database
      * Variable $db ou je récupere l'instance de la class Database
+     *
      */
     protected $db;
 
-    /*
+    /**
+     * Table constructor.
+     * @param Database $db
      * Le constructeur prend en parametres une instance de la class DB car la class Table et tout son heritage
      * auront besoin de se connecter a la DB
      */
@@ -36,14 +45,20 @@ class Table
         }
     }
 
-    /*
-     * connection a la DB et SELECT * FROM *;
+    /**
+     * @return mixed
+     * connection a la DB et SELECT * FROM * (renvoie toute la table)
      * l'instance de la DB est un parametre protegé de la classe;
      */
     public function all() {
         return ($this->query('SELECT * from ' . $this->table));
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * recherche dans la table en fonction de l'id passee en parametre
+     */
     public function find($id) {
         return $this->query("
         SELECT * from " . $this->table . " 
@@ -51,6 +66,36 @@ class Table
         ", [$id], true);
     }
 
+    public function update($id, $fields) {
+        $sql_parts = [];
+        $attributes = [];
+        foreach ($fields as $k => $v) {
+            $sql_parts [] = "$k = ?";
+            $attributes [] = $v;
+        }
+        $attributes [] = $id;
+        Debug::getInstance()->v('sql_parts imploded', implode(',', $sql_parts));
+        Debug::getInstance()->v('attributes', $attributes);
+        die ('$sql');
+//        return $this->query("
+//        UPDATE {$this->table} SET name=""
+//        ");
+    }
+
+    /**
+     * @param $statement
+     * @param null $attributes
+     * @param bool $one
+     * @return mixed
+     * fonction qui appelle une connection prepare a la DB
+     * On change le nom de la classe passee en parametres:
+     * -PostTable devient EntityTable
+     * -la fonction PDO:prepare et PDO:execute peuvent modifier la facon de rendu
+     * Ici dans MysqlDatabase, on a choisi d'utiliser PDO::FETCH_CLASS qui renvoie
+     * Un objet de classe & un tableau
+     * ce qui nous permet d'utiliser la class Entity pour recuperer les donnees
+     * dans cet objet renvoye
+     */
     public function query ($statement, $attributes = null, $one = false) {
         if ($attributes) {
             return
@@ -68,8 +113,6 @@ class Table
                 str_replace('Table', 'Entity', get_class($this)),
                 $one
             );
-
         }
-
     }
 }

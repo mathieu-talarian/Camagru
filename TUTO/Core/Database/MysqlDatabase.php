@@ -4,14 +4,39 @@ namespace Core\Database;
 
 use \PDO;
 
-
 class MysqlDatabase extends Database {
+    /**
+     * @var
+     */
     private $db_name;
+
+    /**
+     * @var string
+     */
     private $db_user;
+
+    /**
+     * @var string
+     */
     private $db_pass;
+
+    /**
+     * @var string
+     */
     private $db_host;
+
+    /**
+     * @var
+     */
     private $pdo;
 
+    /**
+     * MysqlDatabase constructor.
+     * @param $db_name
+     * @param string $db_user
+     * @param string $db_pass
+     * @param string $db_host
+     */
     public function __construct($db_name, $db_user = 'root', $db_pass = 'root', $db_host = 'localhost')
     {
         $this->db_name = $db_name;
@@ -20,6 +45,9 @@ class MysqlDatabase extends Database {
         $this->db_host = $db_host;
     }
 
+    /**
+     * @return PDO
+     */
     private function getPDO () {
         if ($this->pdo === null) {
             $pdo = new PDO('mysql:dbname=' . $this->db_name . ';host=' . $this->db_host . '', $this->db_user, $this->db_pass);
@@ -29,6 +57,12 @@ class MysqlDatabase extends Database {
         return $this->pdo;
     }
 
+    /**
+     * @param $statement
+     * @param null $class_name
+     * @param bool $one
+     * @return array|mixed
+     */
     public function query($statement, $class_name = null, $one = false) {
         $req = $this->getPDO()->query($statement);
         if ($class_name === null) {
@@ -45,10 +79,13 @@ class MysqlDatabase extends Database {
         return $datas;
     }
 
-    public function exec($statement) {
-        $this->getPDO()->exec($statement);
-    }
-
+    /**
+     * @param $statement
+     * @param $attributes
+     * @param null $class_name
+     * @param bool $one
+     * @return array|mixed
+     */
     public function prepare($statement, $attributes, $class_name = null , $one = false) {
         $req = $this->getPDO()->prepare($statement);
         $req->execute($attributes);
@@ -64,5 +101,12 @@ class MysqlDatabase extends Database {
             $datas = $req->fetchAll();
         }
         return $datas;
+    }
+
+    /**
+     * @param $statement
+     */
+    public function exec($statement) {
+        $this->getPDO()->exec($statement);
     }
 }

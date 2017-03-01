@@ -1,11 +1,10 @@
 <?php
 
-use Core\Auth\DBAuth;
+
 
 define('ROOT', dirname(__DIR__));
 require(ROOT . '/app/App.php');
 App::load();
-$app = App::getInstance();
 
 
 if (isset($_GET['p'])) {
@@ -16,32 +15,21 @@ else {
 }
 
 //Auth
-
-$auth = new DBAuth($app->getDB());
+$auth = new Core\Auth\DBAuth(App::getInstance()->getDB());
 if (!$auth->logged()) {
     App::forbidden();
 }
-
-
 //fin Auth
 
-
-
-//load bouttons & page home
-$app->install_admin();
-App::home();
-//fin load
-
-
 ob_start();
+App::home();
+App::login();
+//\Core\Debug\Debug::getInstance()->divvd($_SESSION);
 if ($page === 'home') {
     require ROOT . '/pages/admin/posts/index.php';
 }
-elseif ($page=== 'posts.single') {
-    require ROOT . '/pages/admin/posts/single.php';
-}
-else if ($page=== 'posts.category') {
-    require ROOT . '/pages/admin/posts/category.php';
+elseif ($page=== 'post.edit') {
+    require ROOT . '/pages/admin/posts/edit.php';
 }
 $content = ob_get_clean();
 require ROOT . '/pages/template/default.php';

@@ -9,38 +9,51 @@
 
 namespace Core\HTML;
 
-class BootstrapForm extends Form {
-
-    /**
-     * entoure la sortie
-     * @param $html
-     * @return string
-     */
-    protected function surround($html) {
-        return "<div class=\"form-group\">{$html}</div>";
-    }
+class BootstrapForm extends Form
+{
 
     /**
      * creation input
      * @param $name
      * @return string
      */
-    public function input($name) {
-        return $this->surround(
-            '<label>' . $name . '</label>' .
-            '<input type="text"
+    public function input($name, $label, $options = [])
+    {
+        $type = isset($options['type']) ? $options['type'] : 'text';
+        $label = '<label>' . $label . '</label>';
+        if ($type === 'textarea') {
+            $input = '<textarea type="' . $type . '"
+              name="' . $name . '"
+              class="form-control">'
+                . $this->getValue($name) .
+              '</textarea>';
+        }
+        else {
+            $input = '<input type="' . $type . '"
               name="' . $name . '"
               value="' . $this->getValue($name) . '"
               class="form-control"
-              >'
-        );
+              >';
+        }
+        return $this->surround($label . $input);
+    }
+
+    /**
+     * entoure la sortie
+     * @param $html
+     * @return string
+     */
+    protected function surround($html)
+    {
+        return "<div class=\"form-group\">{$html}</div>";
     }
 
     /**
      * creation Boutton
      * @return string
      */
-    public function submit() {
+    public function submit()
+    {
         return $this->surround('<button type="submit" class="btn btn-primary">Envoyer</button>');
     }
 }

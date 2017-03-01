@@ -1,7 +1,7 @@
 <?php
 
 
-/*
+/**
  * class factory pour l'application
  * Fonction a tout faire
  */
@@ -11,22 +11,26 @@ use Core\Database\MysqlDatabase;
 
 class App
 {
-    /*
+    /**
+     * @var
      * variable qui contient l'instance
      */
     private static $_instance;
 
-    /*
+    /**
+     * @var
      * Intance privée pour l'instance de la db
      */
     private static $_db_instance;
 
-    /*
+    /**
+     * @var string
      * gestion du titre du site
      */
     public $title = 'Camagru';
 
-    /*
+    /**
+     * @return App
      * fonction qui récupere l'instance
      * On peut maintenant modifier directement les variables publiques grace a l'instance
      */
@@ -37,10 +41,9 @@ class App
         return self::$_instance;
     }
 
-    /*
+    /**
      * fonction load qui servira a charger tout le programme
      * Autoload des fichiers et session start;
-     *
      */
     Public static function load() {
         session_start();
@@ -49,19 +52,30 @@ class App
         App\autoloader::register();
         require (ROOT . '/Core/Autoloader.php');
         Core\autoloader::register();
+        Core\Install::getInstance(self::getInstance()->getDB())->all();
     }
 
-    /*
+    /**
+     * @param $array
+     * Setup la DB si n'existe pas
+     * install l'admin pour le pas avoir a appeler l'admin une autre fois
+     */
+
+
+    /**
+     * @param $name
+     * @return mixed
      * Factory pour creer les instances des classes Table (pour recherhes dans db)
      * comme le constructeur de la class Table prend un \App\Database en parametre,
-     * on peur lui passer directement depuis la class comme getDB est instancié ici
+     * on peut lui passer directement depuis la class comme getDB est instancié ici
      */
     public function getTable($name) {
         $class_name = 'App\\Table\\' . ucfirst($name) . 'Table';
         return new $class_name($this->getDB());
     }
 
-    /*
+    /**
+     * @return MysqlDatabase
      * Factory pour creation et connection a la DB + toutes les fonction query/prepare/exec
      */
     public function getDB() {
@@ -77,22 +91,31 @@ class App
         return self::$_db_instance;
     }
 
+    /**
+     * Header not found
+     */
     public static function notFound() {
         header("HTTP/1.0 404 Not Found");
         header("Location:index.php?p=404");
         die ('Page Introuvable');
     }
 
+    /**
+     * Header Forbidden
+     */
     public static function forbidden() {
         header('HTTP/1.0 403 Forbidden');
         die ('Acces Intedit');
     }
 
+    /**
+     * Load un boutton pour retourner a la page home
+     */
     public static function home() {
         echo '<div><a href="index.php">Go Back Home</a></div>';
     }
 
-    public function install_admin () {
-            echo '<div><a href="index.php?p=install.admin">Install admin once</a></div>';
+    public static function login() {
+        echo '<div><a href="index.php?p=login">Login</a></div>';
     }
 }

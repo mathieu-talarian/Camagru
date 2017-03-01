@@ -1,14 +1,10 @@
 <?php
-
 define('ROOT', dirname(__DIR__));
 
 require(ROOT . '/app/App.php');
 App::load();
-App::home();
-if (!isset($_SESSION['admin'])) {
-    App::getInstance()->install_admin();
-    \Core\Debug\Debug::getInstance()->vd($_SESSION);
-}
+
+
 
 if (isset($_GET['p'])) {
     $page = $_GET['p'];
@@ -18,6 +14,9 @@ else {
 }
 
 ob_start();
+App::home();
+App::login();
+\Core\Debug\Debug::getInstance()->divvd($_SESSION);
 if ($page === 'home') {
     require ROOT . '/pages/posts/home.php';
 }
