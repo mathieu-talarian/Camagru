@@ -48,7 +48,7 @@ class Form
             return $this->data->$key;
         }
         else {
-            return isset($this->data[$key]) ? $this->data[$key] : null;
+             return isset($this->data[$key]) ? $this->data[$key] : null;
         }
     }
 

@@ -74,12 +74,21 @@ class Table
             $attributes [] = $v;
         }
         $attributes [] = $id;
-        Debug::getInstance()->v('sql_parts imploded', implode(',', $sql_parts));
-        Debug::getInstance()->v('attributes', $attributes);
-        die ('$sql');
-//        return $this->query("
-//        UPDATE {$this->table} SET name=""
-//        ");
+        $sql_part = implode(', ', $sql_parts);
+       return $this->query(
+           "UPDATE {$this->table} SET $sql_part WHERE id= ?",
+           $attributes,
+           true);
+    }
+
+    public function extract_list($key, $value) {
+        $records = $this->all();
+        $return = [];
+        foreach ($records as $k => $v) {
+            $return[$v->$key] = $v->$value;
+        }
+        return $return;
+
     }
 
     /**

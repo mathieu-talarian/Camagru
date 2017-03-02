@@ -6,6 +6,10 @@ $posts = App::getInstance()->getTable('post')->all();
 
 <h1>Administrer les articles</h1>
 
+<p>
+    <a href="?p=post.add" class="btn btn-success">Ajouter</a>
+</p>
+
 <table class="table">
     <thead>
     <tr>

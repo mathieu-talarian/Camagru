@@ -14,10 +14,10 @@ if (!empty($_POST)) {
 
 $form = new Core\HTML\BootstrapForm($_POST);
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
-
-}
- ?>
+//if (isset($_POST['username']) && isset($_POST['password'])) {
+//
+//}
+// ?>
 
 <form method="post">
     <?= $form->input('username', 'Pseudo'); ?>

@@ -33,7 +33,7 @@ class PostTable extends Table
      * recupere un article en liant la categorie associee
      * @return array
      */
-    public function find($id) {
+    public function findWithCategory($id) {
         return $this->query("
         SELECT post.id, post.titre, post.contenu, category.titre as categorie
         from post

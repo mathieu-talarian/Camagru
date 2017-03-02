@@ -42,4 +42,10 @@ class DBAuth {
     public function logged() {
         return isset($_SESSION['auth']);
     }
+
+    public function logout() {
+        if ($this->logged()) {
+            unset($_SESSION['auth']);
+        }
+    }
 }

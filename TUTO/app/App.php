@@ -115,7 +115,23 @@ class App
         echo '<div><a href="index.php">Go Back Home</a></div>';
     }
 
-    public static function login() {
-        echo '<div><a href="index.php?p=login">Login</a></div>';
+    /**
+     * Load un boutton pour retourner a la page home admin
+     */
+    public static function admin_home() {
+        echo '<div><a href="admin.php">Page admin</a></div>';
+    }
+
+    public static function login()
+    {
+        if (!isset($_SESSION['auth'])) {
+            echo '<div><a href="index.php?p=login">Login</a></div>';
+        }
+    }
+
+    public static function logout() {
+        if (isset($_SESSION['auth'])) {
+            echo '<div><a href="index.php?p=logout">Logout</a></div>';
+        }
     }
 }

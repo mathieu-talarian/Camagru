@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * fonction exec obsolete a enlever
+ */
+
 namespace Core\Database;
 
 use \PDO;
@@ -65,6 +69,13 @@ class MysqlDatabase extends Database {
      */
     public function query($statement, $class_name = null, $one = false) {
         $req = $this->getPDO()->query($statement);
+        if (
+            strpos($statement, 'UPDATE') === 0 ||
+            strpos($statement, 'INSERT') === 0 ||
+            strpos($statement, 'DELETE') === 0
+        ) {
+            return $req;
+        }
         if ($class_name === null) {
             $req->setFetchMode(PDO::FETCH_OBJ);
         }
@@ -88,7 +99,14 @@ class MysqlDatabase extends Database {
      */
     public function prepare($statement, $attributes, $class_name = null , $one = false) {
         $req = $this->getPDO()->prepare($statement);
-        $req->execute($attributes);
+        $res = $req->execute($attributes);
+        if (
+            strpos($statement, 'UPDATE') === 0 ||
+            strpos($statement, 'INSERT') === 0 ||
+            strpos($statement, 'DELETE') === 0
+        ) {
+            return $res;
+        }
         if ($class_name === null) {
             $req->setFetchMode(PDO::FETCH_OBJ);
         }

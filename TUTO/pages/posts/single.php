@@ -2,7 +2,7 @@
 
 
 
-$ret = App::getInstance()->getTable('post')->find($_GET['id']);
+$ret = App::getInstance()->getTable('post')->findWithCategory($_GET['id']);
 
 if ($ret === null) {
     echo 'not_found';
