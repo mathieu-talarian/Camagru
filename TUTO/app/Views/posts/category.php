@@ -1,18 +1,7 @@
-<?php
-
-use Core\Debug\Debug;
-
-$categorie = App::getInstance()->getTable('category')->find($_GET['id']);
-if ($categorie === false) {
-    App::notFound();
-}
-$articles = App::getInstance()->getTable('post')->LastbyCategory($_GET['id']);
-$categories = App::getInstance()->getTable('category')->all();
-?>
-
 <h1><?= $categorie->titre ;?></h1>
-<div class="row">
 
+    <?php if (!empty($articles)) {
+    ?>
     <div class="col-sm-8">
 
         <?php
@@ -26,8 +15,12 @@ $categories = App::getInstance()->getTable('category')->all();
 
         <?php endforeach; ?>
     </div>
+<?php }
+else { ?>
+<div class="col-sm-8">
+    <p>Aucun article dans cette categorie</p>
 </div>
-
+<?php } ?>
 <div class="col-sm-4">
     <ul>
         <?php

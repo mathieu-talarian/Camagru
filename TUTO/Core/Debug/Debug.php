@@ -35,6 +35,26 @@ class Debug
         }
     }
 
+    public function __get($key) {
+        $this->key = $this->$key();
+    }
+
+    public function get() {
+        $this->vd($_GET);
+    }
+
+    public function session() {
+        $this->vd($_SESSION);
+    }
+
+    public function server() {
+        $this->vd($_SERVER);
+    }
+
+    public function post() {
+        $this->vd($_POST);
+    }
+
     public function divvd($var) {
         echo '<div id="head">';
         self::vd($var);

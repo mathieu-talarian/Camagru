@@ -8,35 +8,39 @@ if (isset($_GET['p'])) {
     $page = $_GET['p'];
 }
 else {
-    $page = 'home';
+    $page = 'posts.index';
 }
+//bouttons persos a rajouter dans les controllers
+//App::home();
+//App::admin_home();
+//App::login();
+//App::logout();
+//
 
-ob_start();
-App::home();
-App::admin_home();
-App::login();
-App::logout();
-\Core\Debug\Debug::getInstance()->divvd($_SESSION);
-\Core\Debug\Debug::getInstance()->divvd($_POST);
-if ($page === 'home') {
-    require ROOT . '/pages/posts/home.php';
+$page = explode('.', $page);
+$action = $page[1];
+if ($page[0] == 'admin') {
+    if ($page[1] == 'index') {
+        $controller = '\App\Controller\Admin\AppController';
+        $action = 'index';
+    } else {
+        $controller = '\App\Controller\Admin\\' . ucfirst($page[1]) . 'Controller';
+        $action = $page[2];
+    }
 }
-else if ($page === 'install.admin') {
-    require_once(ROOT . '/config/install.php');
+else {
+    $controller = '\App\Controller\\' . ucfirst($page[0]) . 'Controller';
 }
-elseif ($page=== 'posts.single') {
-    require ROOT . '/pages/posts/single.php';
-}
-else if ($page=== 'posts.category') {
-    require ROOT . '/pages/posts/category.php';
-}
-else if ($page=== 'login') {
-    require ROOT . '/pages/users/login.php';
-}
-else if ($page=== 'logout') {
-    require ROOT . '/pages/users/logout.php';
-}
-$content = ob_get_clean();
-require ROOT . '/pages/template/default.php';
+$controller = new $controller();
+$controller->$action();
+
+
 
 ?>
+
+<div class="core">
+    <a href="index.php">Home</a>
+    <a href="index.php?p=admin.index">Admin</a>
+    <a href="index.php?p=users.login">login</a>
+    <a href="index.php?p=users.logout">Logout</a>
+</div>

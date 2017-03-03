@@ -127,4 +127,12 @@ class MysqlDatabase extends Database {
     public function exec($statement) {
         $this->getPDO()->exec($statement);
     }
+
+    /**
+     * @return string
+     * return l'id du dernier element affecté par PDO
+     */
+    public function lastInsertId() {
+        return $this->getPDO()->lastInsertId();
+    }
 }

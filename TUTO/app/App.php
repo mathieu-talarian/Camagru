@@ -92,23 +92,6 @@ class App
     }
 
     /**
-     * Header not found
-     */
-    public static function notFound() {
-        header("HTTP/1.0 404 Not Found");
-        header("Location:index.php?p=404");
-        die ('Page Introuvable');
-    }
-
-    /**
-     * Header Forbidden
-     */
-    public static function forbidden() {
-        header('HTTP/1.0 403 Forbidden');
-        die ('Acces Intedit');
-    }
-
-    /**
      * Load un boutton pour retourner a la page home
      */
     public static function home() {
