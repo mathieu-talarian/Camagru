@@ -77,8 +77,9 @@ class Install
     protected function create_table($table_name, $colonnes = [])
     {
         if ($table_name) {
-            $req = '
-            CREATE TABLE IF NOT EXISTS ' . $table_name . ' (';
+            $req = 'CREATE TABLE IF NOT EXISTS '
+                . $table_name .
+                ' (';
             if (isset($colonnes)) {
                 foreach ($colonnes as $k => $v) {
                     $req .= $k . ' ' . $v;
@@ -89,6 +90,7 @@ class Install
             }
         }
         $req .= ' );';
+        Debug::getInstance()->vd($req);
         return $req;
     }
 
@@ -99,11 +101,11 @@ class Install
     protected function Setup($array = [], MysqlDatabase $db) {
         if ($array) {
         if (!isset($_SESSION['setup'])) {
-            foreach ($array as $k =>$v) {
-                $setup = $this->create_table($k, $v);
-                $db->exec($setup);
-                $_SESSION['setup'] = 'ok';
-            }
+                foreach ($array as $k =>$v) {
+                    $setup = $this->create_table($k, $v);
+                    $db->exec($setup);
+                    $_SESSION['setup'] = 'ok';
+                    }
             }
         }
     }

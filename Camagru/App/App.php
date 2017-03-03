@@ -48,11 +48,14 @@ class App
      */
     Public static function load() {
         session_start();
+        session_destroy();
+        session_start();
         error_reporting(-1);
         require (ROOT . '/App/Autoloader.php');
         App\autoloader::register();
         require (ROOT . '/Core/Autoloader.php');
         Core\autoloader::register();
+        self::getInstance()->getDB()->getPDO();
         Core\Install::getInstance(self::getInstance()->getDB())->all();
     }
 }

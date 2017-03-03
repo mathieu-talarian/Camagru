@@ -11,7 +11,6 @@ namespace Core\Debug;
 
 class Debug
 {
-    public $key = true;
     private static $_instance;
 
     public static function getInstance() {
@@ -28,11 +27,9 @@ class Debug
     }
 
     public function vd($var) {
-        if ($this->key) {
             echo '<pre>';
             var_dump($var);
             echo '</pre>';
-        }
     }
 
     public function __get($key) {
