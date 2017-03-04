@@ -29,7 +29,7 @@ class DBAuth {
      *
      */
     public function login($username, $passwd) {
-        $user = $this->db->prepare('SELECT * from admin Where name= ? ', [$username], null, true);
+        $user = $this->db->prepare('SELECT * from user Where pseudo= ? ', [$username], null, true);
         if ($user) {
             if ($user->passwd = hash('whirlpool', $passwd)) {
                 $_SESSION['auth'] = $user->id;

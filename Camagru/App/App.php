@@ -18,6 +18,19 @@ class App
 
     private static $_db_instance;
 
+    /**
+     * @param $name
+     * @return mixed
+     * Factory pour creer les instances des classes Table (pour recherhes dans db)
+     * comme le constructeur de la class Table prend un \App\Database en parametre,
+     * on peut lui passer directement depuis la class comme getDB est instancié ici
+     */
+    public function getModel($name)
+    {
+        $class_name = 'App\\Model\\' . ucfirst($name) . 'Model';
+        return new $class_name($this->getDB());
+    }
+
     public static function getInstance() {
         if (self::$_instance === null) {
             self::$_instance = new App();

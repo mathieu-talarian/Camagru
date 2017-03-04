@@ -90,7 +90,6 @@ class Install
             }
         }
         $req .= ' );';
-        Debug::getInstance()->vd($req);
         return $req;
     }
 

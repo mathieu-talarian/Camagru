@@ -12,7 +12,7 @@ namespace Core\Model;
 use Core\Debug\Debug;
 use Core\Database\Database;
 
-class Table
+class Model
 {
     /**
      * @var string
@@ -40,7 +40,7 @@ class Table
         if (is_null($this->table)) {
         $parts = explode('\\', get_class($this));
         $class_name = end($parts);
-        $class_name = str_replace('Table', '', $class_name);
+        $class_name = str_replace('Model', '', $class_name);
         $this->table = strtolower($class_name);
         }
     }

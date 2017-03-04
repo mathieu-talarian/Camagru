@@ -3,14 +3,14 @@
 define('ROOT', dirname(__DIR__));
 require(ROOT . '/app/App.php');
 App::load();
-\Core\Debug\Debug::getInstance()->session;
-\Core\Debug\Debug::getInstance()->server;
+
+\Core\Debug\Debug::getInstance()->vd($_POST);
 
 if (isset($_GET['p'])) {
     $page = $_GET['p'];
 }
 else {
-    $page = 'posts.index';
+    $page = 'home.index';
 }
 
 $page = explode('.', $page);
@@ -29,4 +29,10 @@ else {
 }
 $controller = new $controller();
 $controller->$action();
+
 ?>
+
+<form action="index.php" method="get">
+    <input type="hidden" value="">
+    <button type="submit">Index</button>
+</form>

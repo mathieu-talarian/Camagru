@@ -16,6 +16,8 @@ class Controller
     protected $viewPath;
     protected $template;
 
+    protected static $_regexp_mail = '#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#';
+
     protected function render($view, $variables = []) {
         ob_start();
         extract($variables);
@@ -39,5 +41,13 @@ class Controller
     protected static function forbidden() {
         header('HTTP/1.0 403 Forbidden');
         die ('Acces Intedit');
+    }
+
+    public function keys_filled($var) {
+        foreach ($var as $k => $v) {
+            if ($v === '')
+                return 0;
+        }
+        return 1;
     }
 }
