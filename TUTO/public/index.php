@@ -17,6 +17,10 @@ else {
 //App::logout();
 //
 
+$contr = new \App\Controller\PostsController();
+$contr->test();
+
+
 $page = explode('.', $page);
 $action = $page[1];
 if ($page[0] == 'admin') {
@@ -33,6 +37,7 @@ else {
 }
 $controller = new $controller();
 $controller->$action();
+
 
 
 

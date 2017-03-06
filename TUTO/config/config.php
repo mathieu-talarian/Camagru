@@ -7,7 +7,7 @@
  */
 
 return array(
-    "db_name" => "camagru",
+    "db_name" => "tuto",
     "db_user" => "root",
     "db_pass" => "root",
     "db_host" => "localhost"

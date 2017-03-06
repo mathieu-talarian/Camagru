@@ -120,6 +120,6 @@ class Install
      */
     public function all() {
         $this->Setup(self::$_tables, self::$_db);
-        $this->Install_admin(self::$_db);
+      //  $this->Install_admin(self::$_db);
     }
 }

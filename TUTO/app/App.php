@@ -6,6 +6,7 @@
  * Fonction a tout faire
  */
 
+use Core\Debug\Debug;
 use Core\Config;
 use Core\Database\MysqlDatabase;
 

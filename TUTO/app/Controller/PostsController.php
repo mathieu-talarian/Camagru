@@ -42,6 +42,9 @@ class PostsController extends AppController
     public function single() {
         $article = $this->Post->FindWithCategory($_GET['id']);
         $this->render('posts.single', compact('article'));
+    }
 
+    public function test() {
+        Debug::getInstance()->vd($this->Post->all());
     }
 }

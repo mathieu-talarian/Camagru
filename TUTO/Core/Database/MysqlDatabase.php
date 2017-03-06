@@ -6,6 +6,7 @@
 
 namespace Core\Database;
 
+use Core\Debug\Debug;
 use \PDO;
 
 class MysqlDatabase extends Database {
