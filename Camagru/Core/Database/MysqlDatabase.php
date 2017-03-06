@@ -36,11 +36,6 @@ class MysqlDatabase extends Database {
     private $pdo;
 
     /**
-     * @var PDO connection sans DB_name;
-     */
-    private $w_pdo;
-
-    /**
      * MysqlDatabase constructor.
      * @param $db_name
      * @param string $db_user
@@ -58,7 +53,7 @@ class MysqlDatabase extends Database {
     /**
      * @return PDO
      */
-    public function getPDO () {
+    public function InstallDB () {
         $e = null;
         if ($this->pdo === null) {
             try {
@@ -67,7 +62,8 @@ class MysqlDatabase extends Database {
                 $this->pdo = $pdo;
             }
             catch (\Exception $e) {
-                $this->Install_PDO();
+                $pdo = new PDO('mysql:host=' . $this->db_host . '', $this->db_user, $this->db_pass);
+                $pdo->exec('CREATE DATABASE IF NOT EXISTS ' . $this->db_name . ';');
                 $pdo = new PDO('mysql:dbname=' . $this->db_name . ';host=' . $this->db_host . '', $this->db_user, $this->db_pass);
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $this->pdo = $pdo;
@@ -76,9 +72,13 @@ class MysqlDatabase extends Database {
         return $this->pdo;
     }
 
-    private function Install_PDO() {
-            $pdo = new PDO('mysql:host=' . $this->db_host . '', $this->db_user, $this->db_pass);
-            $pdo->exec('CREATE DATABASE IF NOT EXISTS ' . $this->db_name . ';');
+    private function getPDO() {
+        if ($this->pdo === null) {
+            $pdo = new PDO('mysql:dbname=' . $this->db_name . ';host=' . $this->db_host . '', $this->db_user, $this->db_pass);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->pdo = $pdo;
+        }
+        return $this->pdo;
     }
 
     /**
@@ -88,6 +88,7 @@ class MysqlDatabase extends Database {
      * @return array|mixed
      */
     public function query($statement, $class_name = null, $one = false) {
+        Debug::getInstance()->vd($statement);
         $req = $this->getPDO()->query($statement);
         if (
             strpos($statement, 'UPDATE') === 0 ||
@@ -100,6 +101,7 @@ class MysqlDatabase extends Database {
             $req->setFetchMode(PDO::FETCH_OBJ);
         }
         else {
+            Debug::getInstance()->vd($class_name);
             $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
         }
         if ($one) {

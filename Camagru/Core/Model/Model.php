@@ -34,8 +34,7 @@ class Model
      * Le constructeur prend en parametres une instance de la class DB car la class Table et tout son heritage
      * auront besoin de se connecter a la DB
      */
-    public function __construct(Database $db)
-    {
+    public function __construct(Database $db) {
         $this->db = $db;
         if (is_null($this->table)) {
         $parts = explode('\\', get_class($this));
@@ -51,7 +50,7 @@ class Model
      * l'instance de la DB est un parametre protegé de la classe;
      */
     public function all() {
-        return ($this->query('SELECT * from ' . $this->table));
+        return ($this->query("SELECT * from {$this->table}"));
     }
 
     /**
@@ -59,12 +58,13 @@ class Model
      * @return mixed
      * recherche dans la table en fonction de l'id passee en parametre
      */
-    public function find($id) {
+    public function findwithid($id) {
         return $this->query("
         SELECT * from " . $this->table . " 
         WHERE id = ?
         ", [$id], true);
     }
+
 
     public function update($id, $fields) {
         $sql_parts = [];
@@ -110,7 +110,6 @@ class Model
             $return[$v->$key] = $v->$value;
         }
         return $return;
-
     }
 
     /**
@@ -133,15 +132,17 @@ class Model
                 $this->db->prepare(
                 $statement,
                 $attributes,
-                str_replace('Table', 'Entity', get_class($this)),
+                str_replace('Model', 'Entity', get_class($this)),
                 $one
             );
         }
-        else {
+
+        else
+           {
             return
                 $this->db->query(
                 $statement,
-                str_replace('Table', 'Entity', get_class($this)),
+                str_replace('Model', 'Entity', get_class($this)),
                 $one
             );
         }

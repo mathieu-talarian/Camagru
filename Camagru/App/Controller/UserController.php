@@ -22,18 +22,34 @@ class UserController extends AppController
         $this->loadModel('user');
     }
 
-    public function login() {
-        $errors = false;
-        if (!empty($_POST)) {
-            $auth = new DBAuth(App::getInstance()->getDB());
-            if ($auth->login($_POST['pseudo'], $_POST['passwd']))
-                header('Location: index.php?p=user.login.index');
-            else {
-                $errors = true;
-            }
+    public function index() {
+        Debug::getInstance()->session;
+        if ($this->loggued()) {
+            $this->render('user.index', []);
         }
-        $form = new BootstrapForm($_POST);
-        $this->render('user.login', compact('form', 'errors'));
+        else
+        {
+            $this->forbidden();
+        }
+    }
+
+    public function login() {
+       if ($this->loggued()) {
+       header('Location: index.php?p=user.index');
+        }
+        else {
+            $errors = false;
+            if (!empty($_POST)) {
+                $auth = new DBAuth(App::getInstance()->getDB());
+                if ($auth->login($_POST['pseudo'], $_POST['passwd'])) {
+                    header('Location: index.php?p=user.index');
+                } else {
+                    $errors = true;
+                }
+            }
+            $form = new BootstrapForm($_POST);
+            $this->render('user.login', compact('form', 'errors'));
+        }
     }
 
     public function inscription() {
@@ -44,14 +60,13 @@ class UserController extends AppController
 
             }
             else {
-                Debug::getInstance()->vd($this);
                 $this->user->create(
                     [
                         'nom' => $_POST['nom'],
                         'prenom' => $_POST['prenom'],
-                       'pseudo' => $_POST['pseudo'],
-                      'mail' => $_POST['mail'],
-                       'passwd' => hash('whirlpool', $_POST['passwd'])
+                        'pseudo' => $_POST['pseudo'],
+                        'mail' => $_POST['mail'],
+                        'passwd' => hash('whirlpool', $_POST['passwd'])
                     ]
                 );
             }
@@ -65,15 +80,25 @@ class UserController extends AppController
         if (!$this->keys_filled($var)) {
             return 1;
         }
-        if (!preg_match(self::$_regexp_mail, $var['mail']))
-        {
-            return 2;
+        $pseudo = $this->user->pseudo();
+        foreach ($pseudo as $k => $v) {
+            if ($v->check_pseudo($var['pseudo'])) {
+                return 2;
+            }
         }
-        if ($var['passwd'] !== $var['passwd-verif'])
+        if (!preg_match(self::$_regexp_mail, $var['mail']))
         {
             return 3;
         }
-        return 0;
+        if ($var['passwd'] !== $var['passwd-verif'])
+        {
+            return 4;
+        }
+        return 1;
+    }
+
+    public function logout () {
+        unset ($_SESSION['auth']);
     }
 
 }

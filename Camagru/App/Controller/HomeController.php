@@ -8,15 +8,25 @@
  */
 namespace App\Controller;
 
+use Core\Debug\Debug;
+
 class HomeController extends AppController
 {
     public function __construct()
     {
         parent::__construct();
+        $this->loadModel('user');
     }
 
     public function index() {
-        $this->render('index', []);
+        $pseudo = null;
+
+        if ($this->loggued())
+        {
+            $e = $this->user->findpseudowithid($_SESSION['auth']);
+            $pseudo = $e[0]->pseudo;
+        }
+        $this->render('home', compact('pseudo'));
     }
 
 }

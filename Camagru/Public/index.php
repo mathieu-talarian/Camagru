@@ -4,8 +4,6 @@ define('ROOT', dirname(__DIR__));
 require(ROOT . '/app/App.php');
 App::load();
 
-\Core\Debug\Debug::getInstance()->vd($_POST);
-
 if (isset($_GET['p'])) {
     $page = $_GET['p'];
 }
@@ -36,3 +34,8 @@ $controller->$action();
     <input type="hidden" value="">
     <button type="submit">Index</button>
 </form>
+
+<?php
+\Core\Debug\Debug::getInstance()->session;
+
+?>

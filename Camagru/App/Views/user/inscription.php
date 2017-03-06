@@ -1,18 +1,19 @@
 <?php if ($errors): ?>
-
     <?php if ($errors === 1): ?>
         <div style="color: red;">Champs incomplets</div>
         <?php endif ?>
 
     <?php if ($errors === 2): ?>
-        <div style="color: red;">Mail non reconnu</div>
+        <div style="color: red;">Pseudo Existant</div>
     <?php endif ?>
 
     <?php if ($errors === 3): ?>
-        <div style="color: red;">deux passwords ne correspondent pas</div>
+        <div style="color: red;">Mail non reconnu</div>
     <?php endif ?>
 
-
+    <?php if ($errors === 4): ?>
+        <div style="color: red;">deux passwords ne correspondent pas</div>
+    <?php endif ?>
 <?php endif ?>
 
 <h1>Inscription</h1>
