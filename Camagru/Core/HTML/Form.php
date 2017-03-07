@@ -70,8 +70,4 @@ class Form
     public function submit() {
         return $this->surround('<button type="submit">Envoyer</button>');
     }
-
-    public function test($key) {
-        return $this->getValue($key);
-    }
 }

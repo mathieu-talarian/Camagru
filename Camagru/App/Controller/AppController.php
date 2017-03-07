@@ -24,4 +24,9 @@ class AppController extends Controller
     public function loggued() {
         return (isset($_SESSION['auth']));
     }
+
+    public function eeeeee() {
+        echo 'not found';
+        $this->NotFound();
+    }
 }

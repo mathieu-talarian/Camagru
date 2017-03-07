@@ -9,8 +9,6 @@
 
 namespace Core\Controller;
 
-use Core\Debug\Debug;
-
 class Controller
 {
     protected $viewPath;

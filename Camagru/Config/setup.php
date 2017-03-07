@@ -16,6 +16,8 @@ return array (
         'pseudo' => 'VARCHAR (255)',
         'mail' => 'VARCHAR (255)',
         'passwd' => 'VARCHAR (500)',
+        'register_token' => 'VARCHAR(100)',
+        'registered' => 'INT',
         'PRIMARY KEY' => '(id)'
     )
 //    'post' => array(

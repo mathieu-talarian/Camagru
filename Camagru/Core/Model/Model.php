@@ -65,6 +65,9 @@ class Model
         ", [$id], true);
     }
 
+    public function lastInsertId() {
+        return $this->db->lastInsertId();
+    }
 
     public function update($id, $fields) {
         $sql_parts = [];

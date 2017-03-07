@@ -8,7 +8,7 @@
 
 ?>
 
-<?php if ($pseudo): ?>
+<?php if (isset($pseudo)): ?>
 <form action="index.php" method="get">
     <input type="hidden" name="p" value="user.index">
     <button type="submit"><?=$pseudo?></button>
@@ -20,7 +20,7 @@
 
 <?php endif ?>
 
-    <?php if (!$pseudo): ?>
+    <?php if (!isset($pseudo)): ?>
 <form action="index.php" method="get">
     <input type="hidden" name="p" value="user.login.index">
 <button type="submit">Login</button>

@@ -38,6 +38,27 @@ class BootstrapForm extends Form
         return $this->surround($label . $input);
     }
 
+    public function input_required($name, $label, $options = [])
+    {
+        $type = isset($options['type']) ? $options['type'] : 'text';
+        $label = '<label>' . $label . '</label>';
+        if ($type === 'textarea') {
+            $input = '<textarea type="' . $type . '"
+              name="' . $name . '"
+              class="form-control" required>'
+                . $this->getValue($name) .
+                '</textarea>';
+        }
+        else {
+            $input = '<input type="' . $type . '"
+              name="' . $name . '"
+              value="' . $this->getValue($name) . '"
+              class="form-control"
+              required>';
+        }
+        return $this->surround($label . $input);
+    }
+
     public function select($name, $label, $options) {
         $label = '<label>' . $label . '</label>';
         $input = '<select class="form-control" name="' . $name . '">';

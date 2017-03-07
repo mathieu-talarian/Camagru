@@ -88,7 +88,6 @@ class MysqlDatabase extends Database {
      * @return array|mixed
      */
     public function query($statement, $class_name = null, $one = false) {
-        Debug::getInstance()->vd($statement);
         $req = $this->getPDO()->query($statement);
         if (
             strpos($statement, 'UPDATE') === 0 ||
@@ -101,7 +100,6 @@ class MysqlDatabase extends Database {
             $req->setFetchMode(PDO::FETCH_OBJ);
         }
         else {
-            Debug::getInstance()->vd($class_name);
             $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
         }
         if ($one) {
@@ -156,5 +154,17 @@ class MysqlDatabase extends Database {
      */
     public function lastInsertId() {
         return $this->getPDO()->lastInsertId();
+    }
+
+    /**
+     * fonction pour supprimer la database en cours,
+     * en cas de necessite de redemmarage de session
+     * A EFFACER
+     * @return array|mixed
+     */
+    public function delete_db() {
+        return $this->exec("
+        DROP database {$this->db_name};
+        ");
     }
 }

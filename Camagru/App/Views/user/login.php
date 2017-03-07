@@ -1,6 +1,8 @@
 <?php if ($errors): ?>
 
-    <div style="color: red;">Identifiants incorrects</div>
+    <?php foreach ($errors as $error): ?>
+    <div style="color: red;"><?= $error; ?></div>
+        <?php endforeach ?>
 <?php endif ?>
 <h1>Login</h1>
 
