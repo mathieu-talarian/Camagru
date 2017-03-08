@@ -18,6 +18,7 @@ return array (
         'passwd' => 'VARCHAR (500)',
         'register_token' => 'VARCHAR(100)',
         'registered' => 'INT',
+        'admin' => 'INT',
         'PRIMARY KEY' => '(id)'
     )
 //    'post' => array(

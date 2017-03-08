@@ -16,6 +16,8 @@ class App
 
     private static $_instance;
 
+    private static $_AppController;
+
     private static $_db_instance;
 
     /**
@@ -61,12 +63,19 @@ class App
      */
     Public static function load() {
         session_start();
-        error_reporting(-1);
+       // error_reporting(-1);
         require (ROOT . '/App/Autoloader.php');
         App\autoloader::register();
         require (ROOT . '/Core/Autoloader.php');
         Core\autoloader::register();
         self::getInstance()->getDB()->InstallDB();
         Core\Install::getInstance(self::getInstance()->getDB())->all();
+    }
+
+    public static function getController() {
+        if (is_null(self::$_AppController)) {
+            self::$_AppController = new App\Controller\AppController();
+        }
+        return self::$_AppController;
     }
 }

@@ -5,6 +5,14 @@
     <title><?= \App::getInstance()->_titre; ?></title>
     </head>
 <body>
-<?= $content; ?>
+<div>
+    <?= $header; ?>
+</div>
+<div>
+    <?= $content; ?>
+</div>
+<div>
+    <?= $footer ?>
+</div>
 </body>
 </html>

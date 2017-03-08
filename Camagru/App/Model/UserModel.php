@@ -15,7 +15,6 @@ use Core\Model\Model;
 
 class UserModel extends Model
 {
-
     public function pseudo($pseudo) {
         return $this->query("
         SELECT pseudo from {$this->table}
@@ -23,11 +22,11 @@ class UserModel extends Model
         ", [$pseudo], true);
     }
 
-    public function findpseudowithid($id) {
+    public function FindPseudoWithId($id) {
         return $this->query("
         SELECT pseudo , id from {$this->table}
         Where id = ?
-        ", [$id]);
+        ", [$id], true);
     }
 
     public function mail($mail) {
@@ -53,5 +52,16 @@ class UserModel extends Model
 
     public function CheckRegistered($pseudo) {
         return $this->query("SELECT registered FROM user WHERE pseudo = ?", [$pseudo], true);
+    }
+
+    public function CheckAdmin($var) {
+        $req = $this->query("SELECT * FROM USER WHERE pseudo = ?", [$var['pseudo']], true);
+        if ($var['pseudo'] === $req->pseudo) {
+            if (hash('whirlpool', $var['passwd']) === $req->passwd) {
+                if ($req->admin === '1')
+                    return true;
+            }
+        }
+        return false;
     }
 }

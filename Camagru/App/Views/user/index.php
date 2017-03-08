@@ -9,5 +9,5 @@
 ?>
 
 <h1>
-    Camagru
+    Camagru Page Utilisateur
 </h1>

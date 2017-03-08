@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use Core\Controller\Controller;
+use Core\Debug\Debug;
 
 class AppController extends Controller
 {
@@ -25,8 +26,42 @@ class AppController extends Controller
         return (isset($_SESSION['auth']));
     }
 
-    public function eeeeee() {
-        echo 'not found';
-        $this->NotFound();
+    public function URL($page)
+    {
+        $page = explode('.', $page);
+        $action = $page[1];
+        $class = ucfirst($page[0]);
+        if ($class === 'Home' || $class === 'User' || $class === 'Error' || $class === 'Admin' || $class === 'Register') {
+            $controller = '\App\Controller\\' . $class . 'Controller';
+            $controller = new $controller;
+            if (method_exists($controller, $action)) {
+                return $controller->$action();
+            }
+        }
+        return $this->notFound();
+    }
+
+    protected function header($variables = []) {
+        ob_start();
+        extract($variables);
+        require($this->viewPath . '/template/header.php');
+        return (ob_get_clean());
+    }
+
+    public function footer($variables = []) {
+        ob_start();
+        extract($variables);
+        require($this->viewPath . '/template/footer.php');
+        return (ob_get_clean());
+    }
+
+    protected function render($view, $variables = []) {
+        ob_start();
+        extract($variables);
+        require($this->viewPath . str_replace('.', '/', $view) . '.php');
+        $content = ob_get_clean();
+        $header = $this->header($variables);
+        $footer = $this->footer($variables);
+        require($this->viewPath . 'template/' . $this->template . '.php');
     }
 }

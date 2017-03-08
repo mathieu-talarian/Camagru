@@ -29,7 +29,7 @@ class Controller
      */
     protected static function notFound() {
         header("HTTP/1.0 404 Not Found");
-        header("Location:index.php?p=404");
+  //      header("Location:index.php?p=Error.notFound");
         die ('Page Introuvable');
     }
 
@@ -38,6 +38,7 @@ class Controller
      */
     protected static function forbidden() {
         header('HTTP/1.0 403 Forbidden');
+ //       header('Location: index.php?p=Error.forbidden');
         die ('Acces Intedit');
     }
 
@@ -48,4 +49,14 @@ class Controller
         }
         return 1;
     }
+
+//    public function e404() {
+//        $error = 'Error 404 not found';
+//        return $this->render('errors', compact('error'));
+//    }
+//
+//    public function e403() {
+//        $error = 'Error 403 Forbidden';
+//        return $this->render('errors', compact('error'));
+//    }
 }

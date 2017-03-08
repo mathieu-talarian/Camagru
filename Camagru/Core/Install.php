@@ -8,6 +8,7 @@
  */
 namespace Core;
 
+use App\Model\UserModel;
 use Core\Database\MysqlDatabase;
 use Core\Debug\Debug;
 
@@ -51,14 +52,6 @@ class Install
         if (self::$_instance === null) {
             self::$_instance = new Install();
         }return self::$_instance;
-    }
-
-    /**
-     * @return string
-     * mysql =>creation de l'admin
-     */
-    protected function admin() {
-       return 'Insert into admin SET name="root", passwd="' . hash('whirlpool', 'root') . '";';
     }
 
     /**
@@ -114,8 +107,34 @@ class Install
      */
     protected function Install_admin(MysqlDatabase $db) {
         if (!isset($_SESSION['install_admin'])) {
-            $db->exec($this->admin());
+            $model = new UserModel($db);
+            return $model->create(
+                [
+                    'pseudo' => 'root',
+                    'passwd' => hash('whirlpool', 'root'),
+                    'mail' => 'root',
+                    'registered' => 1,
+                    'admin' => 1
+                ]
+            );
+
+        }
             $_SESSION['install_admin'] = 'ok';
+    }
+
+    protected function Install_user(MysqlDatabase $db) {
+        if (!isset($_SESSION['install_user'])) {
+            $model = new UserModel($db);
+            return $model->create(
+                [
+                    'pseudo' => 'mathmoul',
+                    'passwd' => hash('whirlpool', 'flanbis'),
+                    'mail' => 'mathieu.moullec@gmail.com',
+                    'registered' => 1,
+                    'admin' => 0
+                ]
+            );
+
         }
     }
 
@@ -124,6 +143,9 @@ class Install
      */
     public function all() {
         $this->Setup(self::$_tables, self::$_db);
-//        $this->Install_admin(self::$_db);
+        $this->Install_admin(self::$_db);
+        $this->Install_user(self::$_db);
+        $_SESSION['install_user'] = 'ok';
+        $_SESSION['install_admin'] = 'ok';
     }
 }

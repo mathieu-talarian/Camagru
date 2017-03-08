@@ -24,7 +24,7 @@ class HomeController extends AppController
         if ($this->loggued())
         {
             $e = $this->user->findpseudowithid($_SESSION['auth']);
-            $pseudo = $e[0]->pseudo;
+            $pseudo = $e->pseudo;
         }
         $this->render('home', compact('pseudo'));
     }

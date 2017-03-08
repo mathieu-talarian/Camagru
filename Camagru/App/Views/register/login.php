@@ -7,7 +7,7 @@
 <h1>Login</h1>
 
 <div class="container">
-    <form method="post" action="index.php?p=user.login.index">
+    <form method="post" action="index.php?p=register.login">
         <h2 >Please log in</h2>
         <input name="pseudo" type="text" placeholder="Pseudo">
         <input name="passwd" type="password" placeholder="Password">
