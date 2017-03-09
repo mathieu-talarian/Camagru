@@ -63,7 +63,7 @@ class App
      */
     Public static function load() {
         session_start();
-       // error_reporting(-1);
+        error_reporting(-1);
         require (ROOT . '/App/Autoloader.php');
         App\autoloader::register();
         require (ROOT . '/Core/Autoloader.php');

@@ -12,11 +12,11 @@ if (isset($_SESSION['auth'])) {
 }
 ?>
 
-<header style="display: flex; background-color: aqua">
+<header>
 <!--bouton Home-->
     <form action="index.php" method="get">
         <input type="hidden" value="">
-        <button type="submit">Index</button>
+        <button type="submit">Home <?= $pseudo ?></button>
     </form>
 <!--    bouton home-->
 
@@ -31,10 +31,6 @@ if (isset($_SESSION['auth'])) {
             <button type="submit">Inscription</button>
         </form>
     <?php else: ?>
-        <form action="index.php" method="get">
-            <input type="hidden" name="p" value="user.index">
-            <button type="submit"><?= $pseudo; ?></button>
-        </form>
             <form action="index.php" method="get">
                 <input type="hidden" name="p" value="register.logout">
                 <button type="submit">Logout</button>

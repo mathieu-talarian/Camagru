@@ -22,7 +22,9 @@ class UserController extends AppController
 
     public function index() {
         if ($this->loggued()) {
-            $this->render('user.index', []);
+            $pseudo = $this->user->FindPseudoWithId($_SESSION['auth'])->pseudo;
+            $photo = '<script type="text/javascript" src="js/photo.js"></script>';
+            $this->render('user.index', compact('photo', 'pseudo'));
         }
         else
         {

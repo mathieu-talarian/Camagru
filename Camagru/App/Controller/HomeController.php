@@ -20,13 +20,20 @@ class HomeController extends AppController
 
     public function index() {
         $pseudo = null;
-
-        if ($this->loggued())
+        if ($this->loggued() === 2)
         {
             $e = $this->user->findpseudowithid($_SESSION['auth']);
             $pseudo = $e->pseudo;
+            $this->render('admin.index', compact('pseudo'));
         }
-        $this->render('home', compact('pseudo'));
+        else if ($this->loggued() === 1) {
+            $e = $this->user->findpseudowithid($_SESSION['auth']);
+            $pseudo = $e->pseudo;
+            $this->render('user.index', compact('pseudo'));
+        }
+        else {
+            $this->render('home', compact('pseudo'));
+        }
     }
 
     public function restart_session() {

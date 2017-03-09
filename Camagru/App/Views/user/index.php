@@ -9,5 +9,12 @@
 ?>
 
 <h1>
-    Camagru Page Utilisateur
+    Bienvenue <?= $pseudo ?>
 </h1>
+
+<video id="video"></video>
+<button id="startbutton">Take photo</button>
+<canvas id="canvas"></canvas>
+    <photo id="photo"></photo>
+
+<?= $photo; ?>

@@ -12,7 +12,6 @@ else {
 }
 
 App::getController()->URL($page);
-
 ?>
 <div style="display: flex;flex-direction: column">
     <div><p>Debug</p></div>

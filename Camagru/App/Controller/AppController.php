@@ -23,7 +23,13 @@ class AppController extends Controller
     }
 
     public function loggued() {
-        return (isset($_SESSION['auth']));
+        if (isset($_SESSION['auth'])) {
+            if (isset($_SESSION['admin'])) {
+                return 2;
+            }
+            return 1;
+        }
+        return 0;
     }
 
     public function URL($page)
