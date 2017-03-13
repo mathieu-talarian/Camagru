@@ -13,8 +13,6 @@
         width = 200,
         height = 0;
 
-    console.log(photo)
-
     navigator.getMedia = ( navigator.getUserMedia ||
     navigator.webkitGetUserMedia ||
     navigator.mozGetUserMedia ||

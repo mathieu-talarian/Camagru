@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use \App;
+use Core\HTML\BootstrapForm;
 
 
 class UserController extends AppController
@@ -24,7 +25,8 @@ class UserController extends AppController
         if ($this->loggued()) {
             $pseudo = $this->user->FindPseudoWithId($_SESSION['auth'])->pseudo;
             $photo = '<script type="text/javascript" src="js/photo.js"></script>';
-            $this->render('user.index', compact('photo', 'pseudo'));
+            $form = new BootstrapForm($_POST);
+            $this->render('user.index', compact('photo', 'pseudo', 'form'));
         }
         else
         {

@@ -2,19 +2,27 @@
 /**
  * Created by PhpStorm.
  * User: mmoullec
- * Date: 3/6/17
- * Time: 8:19 PM
+ * Date: 3/13/17
+ * Time: 3:07 PM
  */
 
 ?>
 
-<h1>
-    Bienvenue <?= $pseudo ?>
-</h1>
+<div class="booth">
+    <video id="video" width="400" height="300"></video>
+    <a href="#" id="capture" class="booth-capture-button">
+        Take photo
+    </a>
+    <canvas id="canvas" width="400" height="300"></canvas>
+    <img id="photo">
+       <form id="form" action="#" method="post">
+           form action="" method="post">
+           <?= $form->input('titre', 'Titre'); ?>
+           <?= $form->input_required('passwd-verif', 'Repetez le mot de passe', ['type' => 'password']); ?>
 
-<video id="video"></video>
-<button id="startbutton">Take photo</button>
-<canvas id="canvas"></canvas>
-    <photo id="photo"></photo>
+           <button class="btn btn-primary">Submit</button>
+       </form>
 
-<?= $photo; ?>
+    </form>
+</div>
+<script src="Public/js/take_photo.js"></script>
