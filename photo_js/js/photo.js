@@ -1,23 +1,28 @@
 (function() {
-    // window.alert("bonjour");
     var video = document.getElementById('video');
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    var photo = document.getElementById('photo');
     var vendor = window.URL || window.webkitURL;
 
-    navigator.getMedia =    navigator.getUserMedia ||
-                            navigator.webkitGetUserMedia ||
-                            navigator.mosGetUserMedia ||
-                            navigator.msGetUserMedia;
+    navigator.getMedia =    navigator.webkitGetUserMedia ||
+                                navigator.mozGetUserMedia ||
+                                navigator.msGetUserMedia;
 
 
     navigator.getMedia({
         video: true,
         audio: false
-    } , function(stream) {
+        }, function(stream) {
         video.src = vendor.createObjectURL(stream);
         video.play();
-        },
-        function(e) {
-        alert ('an error occured');
         }
-    )
-});
+        , function(e) {
+        });
+
+    document.getElementById('capture').addEventListener('click', function() {
+        context.drawImage(video, 0, 0, 400, 300);
+        photo.setAttribute('src', canvas.toDataURL('image/png'));
+    });
+
+}) ();

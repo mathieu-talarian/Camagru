@@ -13,15 +13,24 @@ use Core\Debug\Debug;
 
 class AppController extends Controller
 {
+    /**
+     * AppController constructor.
+     */
     public function __construct() {
         $this->template = 'default';
         $this->viewPath = ROOT . '/App/Views/';
     }
 
+    /**
+     * @param $model_name
+     */
     protected function loadModel($model_name) {
         $this->$model_name = \App::getInstance()->getModel($model_name);
     }
 
+    /**
+     * @return int
+     */
     public function loggued() {
         if (isset($_SESSION['auth'])) {
             if (isset($_SESSION['admin'])) {
@@ -32,6 +41,9 @@ class AppController extends Controller
         return 0;
     }
 
+    /**
+     * @param $page
+     */
     public function URL($page)
     {
         $page = explode('.', $page);
@@ -47,6 +59,10 @@ class AppController extends Controller
         return $this->notFound();
     }
 
+    /**
+     * @param array $variables
+     * @return string
+     */
     protected function header($variables = []) {
         ob_start();
         extract($variables);
@@ -54,6 +70,10 @@ class AppController extends Controller
         return (ob_get_clean());
     }
 
+    /**
+     * @param array $variables
+     * @return string
+     */
     public function footer($variables = []) {
         ob_start();
         extract($variables);
@@ -61,6 +81,10 @@ class AppController extends Controller
         return (ob_get_clean());
     }
 
+    /**
+     * @param $view
+     * @param array $variables
+     */
     protected function render($view, $variables = []) {
         ob_start();
         extract($variables);
