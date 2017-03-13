@@ -12,7 +12,7 @@ if (isset($_SESSION['auth'])) {
 }
 ?>
 
-<header>
+<header class="header">
 <!--bouton Home-->
     <form action="index.php" method="get">
         <input type="hidden" value="">

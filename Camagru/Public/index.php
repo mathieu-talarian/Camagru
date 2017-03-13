@@ -18,7 +18,7 @@ App::getController()->URL($page);
     <div>
 <?php
 
-\Core\Debug\Debug::getInstance()->vd();
+\Core\Debug\Debug::getInstance()->session;
 
 ?>
     </div>

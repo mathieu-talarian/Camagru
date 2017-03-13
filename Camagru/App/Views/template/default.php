@@ -7,9 +7,7 @@
 
     </head>
 <body>
-<div class="header">
     <?= $header; ?>
-</div>
 <div class="heart">
     <?= $content; ?>
 </div>
