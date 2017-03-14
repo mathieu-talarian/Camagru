@@ -26,3 +26,14 @@
     });
 
 }) ();
+
+var masques = document.getElementById('masques-gallery');
+var masque = masques.children;
+
+for (var i = 0; i < masque.length; i++) {
+    var sel = masque[i];
+    sel.addEventListener('click', function() {
+        photo.setAttribute('src', canvas.toDataURL('image/png'));
+    })
+
+};
