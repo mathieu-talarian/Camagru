@@ -14,6 +14,7 @@ class AdminController extends AppController
     public function __construct()
     {
         parent::__construct();
+        $This->loadmodel('commentaires');
     }
 
     public function index() {

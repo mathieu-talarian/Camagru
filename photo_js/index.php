@@ -25,21 +25,25 @@
     </div>
 <div class="body">
     <div class="mosaic">
+        <div id="player" class="player">
         <video class="booth" id="video" width="400" height="300"></video>
+        </div>
+        <div class="btn">
         <a href="#" id="capture" class="booth-capture-button">Take photo</a>
+        </div>
         <canvas id="canvas" width="400" height="300"></canvas>
         <img id="photo" src="" alt="">
     </div>
 </div>
     <div id="masques-gallery" class="masques-gallery">
         <div class="image-height">
-            <img class="masque" id="m1" src="images/m1.jpeg" alt="">
+            <img id="masque" class="masque" src="images/m1.jpeg" alt="">
         </div>
         <div class="image-height">
-            <img class="masque" id="m1" src="images/m2.png" alt="">
+            <img id="masque" class="masque" src="images/m2.png" alt="">
         </div>
         <div class="image-height">
-            <img class="masque" id="m1" src="images/m3.png" alt="">
+            <img id="masque" class="masque" src="images/m3.png" alt="">
         </div>
     </div>
 <div class="footer">
