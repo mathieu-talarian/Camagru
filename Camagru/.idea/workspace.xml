@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de241842-0c70-4869-936b-11a9c0916a3a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo_js/images/m2.png" afterPath="$PROJECT_DIR$/../photo_js/images/m2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo_js/images/m3.png" afterPath="$PROJECT_DIR$/../photo_js/images/m3.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Controller/AdminController.php" afterPath="$PROJECT_DIR$/App/Controller/AdminController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Entity/UserEntity.php" afterPath="$PROJECT_DIR$/App/Entity/UserEntity.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TUTO/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../TUTO/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo_js/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../photo_js/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo_js/index.php" afterPath="$PROJECT_DIR$/../photo_js/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo_js/js/photo.js" afterPath="$PROJECT_DIR$/../photo_js/js/photo.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,18 +17,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UserEntity.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/App/Entity/UserEntity.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -432,18 +414,19 @@
       <workItem from="1489516418504" duration="52000" />
       <workItem from="1489572538250" duration="2994000" />
       <workItem from="1489581823778" duration="2051000" />
-      <workItem from="1489599523645" duration="395000" />
+      <workItem from="1489599523645" duration="434000" />
+      <workItem from="1489671799702" duration="266000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82038000" />
+    <option name="totallyTimeSpent" value="82343000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18149325" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18268467" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -845,7 +828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="20" column="28" lean-forward="false" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>

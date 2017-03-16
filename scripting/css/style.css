@@ -1,0 +1,71 @@
+html, body {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header {
+    width: 100%;
+    height: 20px;
+    background-color: blanchedalmond;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: antiquewhite;
+}
+
+.body {
+    width: 60%;
+    height:800px;
+    background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cadre {
+    width: 400px;
+    height: 300px;
+    border: #9fff4f 10px solid;
+    background-color: black;
+}
+
+.gallery {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: antiquewhite;
+}
+
+.m {
+    width: 100px;
+    height: 80px;
+}
+
+#m1 {
+    background-color: red;
+}
+
+#m2 {
+    background-color: green;
+}
+
+#m3 {
+    background-color: blue;
+}
+
+
+
+
+
