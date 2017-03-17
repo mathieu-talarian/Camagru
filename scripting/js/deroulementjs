@@ -1,0 +1,8 @@
+Selectionner une div masque!!
+
+Quand un masque est selectionne:
+- le masque devient tranparent
+//- les autres masques (re)deviennent normaux//
+- On met une copie de ce masque dans la zone video
+- copie deplacable au sein de div.video et changer taille.
+-affichage du bouton de prise photo

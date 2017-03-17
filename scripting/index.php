@@ -18,9 +18,9 @@ header
         </div>
     </div>
     <div class="gallery">
-            <div id="m1" class="m"></div>
-            <div id="m2" class="m"></div>
-            <div id="m3" class="m"></div>
+            <div style="" id="m1" class="m"></div>
+            <div style="" id="m2" class="m"></div>
+            <div style="" id="m3" class="m"></div>
     </div>
 </div>
 <canvas class="canvas"></canvas>
