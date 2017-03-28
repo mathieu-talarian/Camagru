@@ -31,6 +31,9 @@
         <div class="btn">
         <a href="#" id="capture" class="booth-capture-button">Take photo</a>
         </div>
+        <div class="btn">
+            <a href="#" id="del_mask" class="booth-capture-button">Delete selected masque</a>
+        </div>
         <canvas id="canvas" width="400" height="300"></canvas>
         <img id="photo" src="" alt="">
     </div>
@@ -46,6 +49,7 @@
             <img id="masque" class="masque" src="images/m3.png" alt="">
         </div>
     </div>
+
 <div class="footer">
     <em>mmoullec @ 42 2017</em>
 </div>

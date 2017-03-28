@@ -3,6 +3,12 @@ html, body {
     padding: 0;
 }
 
+.player {
+    width: 460px;
+    height: 360px;
+    position: relative;
+}
+
 .page {
     display:flex;
     flex-wrap: wrap;
@@ -74,9 +80,9 @@ html, body {
     font-family: sans-serif;
 }
 
-#canvas {
-    display: none;
-}
+/*#canvas {*/
+    /*display: none;*/
+/*}*/
 
 .masques-gallery {
     width: 20%;
