@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de241842-0c70-4869-936b-11a9c0916a3a" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../index.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo_js/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../photo_js/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -104,8 +104,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="width" value="2560" />
-    <option name="height" value="1440" />
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="773" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -309,7 +310,6 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="FullScreen" value="true" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/mmoullec/http/MyWebSite/cam_gh/Camagru/App/Views/user/index_test.php" />
   </component>
@@ -416,17 +416,19 @@
       <workItem from="1489581823778" duration="2051000" />
       <workItem from="1489599523645" duration="434000" />
       <workItem from="1489671799702" duration="266000" />
+      <workItem from="1490012330579" duration="527000" />
+      <workItem from="1490558729545" duration="588000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82343000" />
+    <option name="totallyTimeSpent" value="83458000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18268467" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18820679" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -755,7 +757,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -778,15 +779,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="16" column="1" lean-forward="false" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-          <folding>
-            <marker date="1488992540000" expanded="true" signature="275:333" ph="SELECT pseud... $" />
-            <marker date="1488992540000" expanded="true" signature="452:511" ph="SELECT pseud... $" />
-            <marker date="1488992540000" expanded="true" signature="616:669" ph="SELECT mail $" />
-            <marker date="1488992540000" expanded="true" signature="784:852" ph="SELECT regis... user" />
-            <marker date="1488992540000" expanded="true" signature="1007:1070" ph="UPDATE user " />
-            <marker date="1488992540000" expanded="true" signature="1174:1218" ph="SELECT regis... user" />
-            <marker date="1488992540000" expanded="true" signature="1314:1349" ph="SELECT * FRO... USER" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -794,7 +787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

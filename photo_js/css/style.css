@@ -80,9 +80,9 @@ html, body {
     font-family: sans-serif;
 }
 
-/*#canvas {*/
-    /*display: none;*/
-/*}*/
+#canvas {
+    display: none;
+}
 
 .masques-gallery {
     width: 20%;

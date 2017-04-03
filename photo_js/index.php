@@ -24,7 +24,7 @@
         </form>
     </div>
 <div class="body">
-    <div class="mosaic">
+    <div class="mosaic" id="mozaic">
         <div id="player" class="player">
         <video class="booth" id="video" width="400" height="300"></video>
         </div>

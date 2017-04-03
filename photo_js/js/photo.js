@@ -55,6 +55,11 @@
                     console.log('==>', player.removeChild(player.lastElementChild), '<===');
                 }
                 var test = player.appendChild(image);
+                var tall = document.createElement('img');
+                tall.src = 'images/more.png';
+                tall.setAttribute('style', 'width: 50 px; height: 50px;')
+                var mozaic = document.getElementById('mozaic');
+                mozaic.appendChild(tall);
                 test.addEventListener('click', function (e) {
                     var sel = this;
                     console.log(sel.width);
