@@ -24,27 +24,29 @@
         </form>
     </div>
 <div class="body">
-    <div class="mosaic" id="mozaic">
+    <div class="mozaic" id="mozaic">
         <div id="player" class="player">
-        <video class="booth" id="video" width="400" height="300"></video>
+            <video class="booth" id="video" width="400" height="300"></video>
         </div>
-        <div class="buttons">
-        <div class="btn">
-        <a href="#" id="capture" style="display: none;" class="booth-capture-button">Take photo</a>
-        </div>
-        <div class="btn">
-            <a href="#" id="del_mask" style="display: none;" class="booth-capture-button">Delete selected masque</a>
-        </div>
-        <div class="more">
-        <img class="ml" src="images/more.png">
-        </div>
-        <div class="less">
-        <img class="ml" src="images/less.png">
-        </div>
-        </div>
-        <canvas id="canvas" width="400" height="300"></canvas>
+                <canvas id="canvas" width="400" height="300"></canvas>
         <img id="photo" src="" alt="">
     </div>
+            <div class="more_less" id="more_less" style="display: none;">
+                <div class="more">
+                    <img id="more" class="ml" src="images/more.png">
+                </div>
+                <div class="less">
+                    <img class="ml" id="less" src="images/less.png">
+                </div>
+            </div>
+        <!--<div class="buttons" style="display: none;" id="buttons">
+            <div class="btn">
+                <a href="#" id="capture" class="booth-capture-button">Take photo</a>
+            </div>  
+            <div class="btn">
+                <a href="#" id="del_mask" class="booth-capture-button">Delete selected masque</a>
+            </div>
+        </div>-->
 </div>
     <div id="masques-gallery" class="masques-gallery">
         <div class="image-height">
