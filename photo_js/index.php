@@ -28,11 +28,19 @@
         <div id="player" class="player">
         <video class="booth" id="video" width="400" height="300"></video>
         </div>
+        <div class="buttons">
         <div class="btn">
-        <a href="#" id="capture" class="booth-capture-button">Take photo</a>
+        <a href="#" id="capture" style="display: none;" class="booth-capture-button">Take photo</a>
         </div>
         <div class="btn">
-            <a href="#" id="del_mask" class="booth-capture-button">Delete selected masque</a>
+            <a href="#" id="del_mask" style="display: none;" class="booth-capture-button">Delete selected masque</a>
+        </div>
+        <div class="more">
+        <img class="ml" src="images/more.png">
+        </div>
+        <div class="less">
+        <img class="ml" src="images/less.png">
+        </div>
         </div>
         <canvas id="canvas" width="400" height="300"></canvas>
         <img id="photo" src="" alt="">

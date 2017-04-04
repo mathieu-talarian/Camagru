@@ -5,6 +5,8 @@
     var photo = document.getElementById('photo');
     var vendor = window.URL || window.webkitURL;
     var player = document.getElementById('player');
+    var capt_btn = document.getElementById('capture');
+    var del_btn = document.getElementById('del_mask');
 
     navigator.getMedia = navigator.webkitGetUserMedia ||
         navigator.mozGetUserMedia ||
@@ -46,13 +48,14 @@
                     selected.setAttribute('style', 'opacity: 0.5');
                 }
                 e.stopPropagation();
-                console.log(selected);
+                capt_btn.removeAttribute('style', 'display');
+                del_btn.removeAttribute('style', 'display');
                 var image = document.createElement('img');
                 image.src = selected.src;
                 image.setAttribute('style', 'position: absolute; top: 30px; right: 10px; z-index:10;');
                 image.setAttribute('draggable', 'true');
                 if ((player.lastElementChild.tagName) === 'IMG') {
-                    console.log('==>', player.removeChild(player.lastElementChild), '<===');
+                    player.removeChild(player.lastElementChild);
                 }
                 var test = player.appendChild(image);
                 var tall = document.createElement('img');
