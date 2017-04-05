@@ -28,8 +28,8 @@
         <div id="player" class="player">
             <video class="booth" id="video" width="400" height="300"></video>
         </div>
-                <canvas id="canvas" width="400" height="300"></canvas>
-        <img id="photo" src="" alt="">
+        <canvas id="canvas" width="400" height="300"></canvas>
+<!--        <img id="photo" src="" alt="">-->
     </div>
             <div class="more_less" id="more_less" style="display: none;">
                 <div class="more">
@@ -39,14 +39,14 @@
                     <img class="ml" id="less" src="images/less.png">
                 </div>
             </div>
-        <!--<div class="buttons" style="display: none;" id="buttons">
+        <div class="buttons" style="display: none;" id="buttons">
             <div class="btn">
                 <a href="#" id="capture" class="booth-capture-button">Take photo</a>
-            </div>  
+            </div>
             <div class="btn">
                 <a href="#" id="del_mask" class="booth-capture-button">Delete selected masque</a>
             </div>
-        </div>-->
+        </div>
 </div>
     <div id="masques-gallery" class="masques-gallery">
         <div class="image-height">
@@ -57,6 +57,9 @@
         </div>
         <div class="image-height">
             <img id="masque" class="masque" src="images/m3.png" alt="">
+        </div>
+        <div class="image-height">
+            <img id="masque" class="masque" src="images/white.png" alt="">
         </div>
     </div>
 
