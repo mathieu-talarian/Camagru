@@ -139,6 +139,7 @@ class Install
     }
 
     /**
+     * A Enlever
      * Installation de all
      */
     public function all() {

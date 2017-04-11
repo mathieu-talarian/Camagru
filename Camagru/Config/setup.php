@@ -9,7 +9,7 @@
  */
 
 return array (
-    'user' => array(
+    'user' => array (
         'id' => 'INT NOT NULL AUTO_INCREMENT',
         'nom' => 'VARCHAR (255)',
         'prenom' => 'VARCHAR (255)',
@@ -20,15 +20,14 @@ return array (
         'registered' => 'INT',
         'admin' => 'INT',
         'PRIMARY KEY' => '(id)'
+    ),
+    'image' => array (
+       'id' => 'INT NOT NULL AUTO_INCREMENT',
+       'user_id' => 'INT NOT NULL',
+       'contenu' => 'VARCHAR (255)',
+       'date' => 'DATETIME',
+       'PRIMARY KEY' => '(id)'
     )
-//    'post' => array(
-//        'id' => 'INT NOT NULL AUTO_INCREMENT',
-//        'titre' => 'VARCHAR (255)',
-//        'contenu' => 'VARCHAR (5000)',
-//        'categorie' => 'INT',
-//        'date' => 'DATETIME',
-//        'PRIMARY KEY' => '(id)'
-//            ) ,
 //    'category' => array(
 //        'id' => 'INT NOT NULL AUTO_INCREMENT',
 //        'titre' => 'VARCHAR (255)',

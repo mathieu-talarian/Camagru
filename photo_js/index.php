@@ -66,6 +66,6 @@
 <div class="footer">
     <em>mmoullec @ 42 2017</em>
 </div>
-    <script src="js/script.js"></script>
+    <script src="js/photo.js"></script>
 </div>
 </html>

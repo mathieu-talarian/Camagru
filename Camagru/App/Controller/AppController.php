@@ -9,7 +9,6 @@
 namespace App\Controller;
 
 use Core\Controller\Controller;
-use Core\Debug\Debug;
 
 class AppController extends Controller
 {
