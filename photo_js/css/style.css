@@ -26,7 +26,6 @@ html, body {
 
 .body {
     width: 60%;
-    height: 90vh;
     float:right;
     background-color: #000000;
     display: flex;

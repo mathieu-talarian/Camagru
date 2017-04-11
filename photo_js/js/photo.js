@@ -31,10 +31,6 @@
         , function (e) {
             alert("impossible d\'acceder a la cam");
         });
-
-
-
-
     for (var i = 0; i < masques.length; i++) {
         masques[i].addEventListener('click', function (e) {
                 if (!selected) {
