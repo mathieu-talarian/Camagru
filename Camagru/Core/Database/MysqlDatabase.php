@@ -110,6 +110,19 @@ class MysqlDatabase extends Database {
         return $datas;
     }
 
+    public function json_query ($statement, $one = false) {
+        $req = $this->getPDO()->query($statement);
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        if ($one) {
+            $datas = $req->fetch();
+        }
+        else {
+            $datas = $req->fetchAll();
+        }
+        return (json_encode($datas));
+
+    }
+
     /**
      * @param $statement
      * @param $attributes
@@ -139,6 +152,19 @@ class MysqlDatabase extends Database {
             $datas = $req->fetchAll();
         }
         return $datas;
+    }
+
+    public function json_prepare($statement, $attributes, $one) {
+        $req = $this->getPDO()->prepare($statement);
+        $req->execute($attributes);
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        if ($one) {
+            $datas = $req->fetch();
+        }
+        else {
+            $datas = $req->fetchAll();
+        }
+        return (json_encode($datas));
     }
 
     /**

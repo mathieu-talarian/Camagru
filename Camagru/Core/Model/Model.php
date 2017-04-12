@@ -150,4 +150,13 @@ class Model
             );
         }
     }
+
+    public function json_query ($statement, $attributes = null, $one = false) {
+        if ($attributes) {
+            return ($this->db->json_prepare($statement, $attributes, $one));
+        }
+        else {
+            return ($this->db->json_query($statement, $one));
+        }
+    }
 }

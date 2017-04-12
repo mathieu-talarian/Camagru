@@ -46,7 +46,9 @@ class AppController extends Controller
     public function URL($page)
     {
         $page = explode('.', $page);
-        $action = $page[1];
+        if (isset($page[1])) {
+            $action = $page[1];
+        }
         $class = ucfirst($page[0]);
         if ($class === 'Home' || $class === 'User' || $class === 'Error' || $class === 'Admin' || $class === 'Register') {
             $controller = '\App\Controller\\' . $class . 'Controller';

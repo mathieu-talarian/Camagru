@@ -63,7 +63,7 @@ class UserController extends AppController
 
     public function galleryperso() {
         $images = $this->image->FindImageswithId($_SESSION['auth']);
-        $this->render_only('user.gallery', compact('$images'));
+        $this->render_only('user.galleryperso', compact('$images'));
     }
 
     public static function Userlogout () {
