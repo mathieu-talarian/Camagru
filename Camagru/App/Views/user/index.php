@@ -19,4 +19,4 @@
         <div id="gallery" class="gallery">
             gallerie de photos perso
     </div>
-<script src="Public/js/take_photo.js"></script>
+<script src="Public/js/photo_script.js"></script>

@@ -1,6 +1,5 @@
 (function() {
 
-
     function getXMLHttpRequest() {
         var xhr = null;
 
@@ -49,7 +48,5 @@
         }
 
     };
-
-
     console.log('REQQQQ ===>', req);
 })();

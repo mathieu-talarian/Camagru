@@ -24,7 +24,7 @@ return array (
     'image' => array (
        'id' => 'INT NOT NULL AUTO_INCREMENT',
        'user_id' => 'INT NOT NULL',
-       'contenu' => 'VARCHAR (255)',
+       'contenu' => 'VARCHAR (5000)',
        'date' => 'DATETIME',
        'PRIMARY KEY' => '(id)'
     )

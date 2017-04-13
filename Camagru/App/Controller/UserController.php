@@ -63,7 +63,7 @@ class UserController extends AppController
 
     public function galleryperso() {
         $images = $this->image->FindImageswithId($_SESSION['auth']);
-        $this->render_only('user.galleryperso', compact('$images'));
+        $this->render_only('user.galleryperso', compact('images'));
     }
 
     public static function Userlogout () {
@@ -71,9 +71,17 @@ class UserController extends AppController
         Header ('Location: index.php');
     }
 
-    public function sharephoto () {
-        $_SESSION['share'] = 'yes';
-        echo 'coucou';
-        \Core\Debug\Debug::getInstance()->get;
+    public function dlphoto () {
+//        $image = str_replace('data:image/png;base64,', '', $_POST['img']);
+        $image = file_get_contents($_POST['img']);
+        $image = base64_decode($image);
+        Debug::getInstance()->vd(base64_encode($image));
+        $this->image->create(
+            [
+                'user_id' => $_SESSION['auth'],
+                'contenu' => $image,
+                'date' => date("Y-m-d H:i:s"),
+            ]
+        );
     }
 }
