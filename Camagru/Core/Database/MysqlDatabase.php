@@ -111,17 +111,15 @@ class MysqlDatabase extends Database {
     }
 
     public function json_query($statement, $one = false) {
-
-//        $req = $this->getPDO()->query($statement);
-//        $req->setFetchMode(PDO::FETCH_ASSOC);
-//        if ($one) {
-//            $datas = $req->fetch();
-//        }
-//        else {
-//            $datas = $req->fetchAll();
-//        }
-//        Debug::getInstance()->vd($datas);
-        return ($datas);
+        $req = $this->getPDO()->query($statement);
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        if ($one) {
+            $datas = $req->fetch();
+        }
+        else {
+            $datas = $req->fetchAll();
+        }
+        return (json_encode($datas));
 
     }
 

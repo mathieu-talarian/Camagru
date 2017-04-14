@@ -8,10 +8,16 @@ use Core\Model\Model;
 class ImageModel extends Model
 {
     public function FindImagesWithId($id) {
-        $dt = $this->query("
+        return
+        $this->json_query("
         SELECT contenu, date from {$this->table}
-        where id = ?
-        ", [$id], true);
-        Debug::getInstance()->vd($dt);
+        where user_id = ?
+        ", [$id]);
+    }
+
+    public function json_all() {
+        return $this->json_query("
+        SELECT contenu, date, user_id, user.pseudo from {$this->table}
+        LEFT JOIN user on image.user_id = user.id;");
     }
 }

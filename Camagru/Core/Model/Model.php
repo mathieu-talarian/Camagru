@@ -130,6 +130,7 @@ class Model
      * dans cet objet renvoye
      */
     public function query ($statement, $attributes = null, $one = false) {
+
         if ($attributes) {
             return
                 $this->db->prepare(

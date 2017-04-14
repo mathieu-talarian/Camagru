@@ -61,9 +61,19 @@ class UserController extends AppController
         require($this->viewPath . 'template/' . $this->template . '.php');
     }
 
+    public function getphotos (){
+        echo $this->image->json_all();
+    }
+
+    public function gallery() {
+        $images = $this->image->json_all();
+        $form = new BootstrapForm($_POST);
+        $this->render('user.gallery', compact('images'));
+
+    }
+
     public function galleryperso() {
-        $images = $this->image->FindImageswithId($_SESSION['auth']);
-        $this->render_only('user.galleryperso', compact('images'));
+       echo $this->image->FindImageswithId($_SESSION['auth']);
     }
 
     public static function Userlogout () {
@@ -71,17 +81,38 @@ class UserController extends AppController
         Header ('Location: index.php');
     }
 
+    /**
+     *
+     */
     public function dlphoto () {
-//        $image = str_replace('data:image/png;base64,', '', $_POST['img']);
-        $image = file_get_contents($_POST['img']);
-        $image = base64_decode($image);
-        Debug::getInstance()->vd(base64_encode($image));
+        $image = $this->gest_image($_POST['img']);
+        $id_uniq = uniqid();
+        $filepath = $this->file_path($_SESSION['auth'], $id_uniq);
+        imagepng($image, $filepath);
+        imagedestroy($image);
         $this->image->create(
             [
                 'user_id' => $_SESSION['auth'],
-                'contenu' => $image,
+                'contenu' => $filepath,
                 'date' => date("Y-m-d H:i:s"),
             ]
         );
+    }
+
+    private function file_path($user_id, $id_uniq) {
+        if (!file_exists(ROOT . '/Public/Photos')) {
+            mkdir(ROOT. '/Public/Photos');
+        }
+        if (!file_exists(ROOT . '/Public/Photos/' . $user_id)) {
+            mkdir(ROOT . '/Public/Photos/' . $user_id);
+        }
+        return ('Public/Photos/' . $user_id . '/' . $id_uniq . '.png');
+    }
+
+    private function gest_image($dt) {
+        $image = str_replace('data:image/png;base64,', '', $dt);
+        $image = str_replace(' ', '+', $image);
+        $image = base64_decode($image);
+        return (imagecreatefromstring($image));
     }
 }

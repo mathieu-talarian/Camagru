@@ -42,7 +42,20 @@
 
     var readData = function (data) {
         console.log(data);
-        alert(data);
+        var dt = JSON.parse(data);
+        console.log(dt);
+        var photos = gallery.querySelectorAll('#stamp');
+        for (var i = 0; i < photos.length; i++) {
+            gallery.removeChild(photos[i]);
+        }
+        for (var i = 0; i < dt.length; i++) {
+            var img =document.createElement('img');
+            img.id = 'stamp';
+            img.src = dt[i].contenu;
+            img.width = 400 / 2;
+            img.height = 300 / 2;
+            gallery.appendChild(img);
+        }
     };
 
     /**
@@ -56,7 +69,9 @@
         vendorUrl = window.URL || window.webkitURL,
         photo = document.createElement('img'),
         capture = document.getElementById('capture'),
-        share = document.createElement('a');
+        share = document.createElement('a'),
+        gallery= document.getElementById('gallery');
+
 
     /**
      * share button
@@ -90,21 +105,13 @@
     galleryperso(readData);
     capture.addEventListener('click', function (e) {
         e.preventDefault();
-        context.drawImage(video, 0, 0, 400, 300);
-        booth.removeChild(video);
-        booth.appendChild(photo);
-        booth.removeChild(this);
-        booth.appendChild(share);
-        photo.setAttribute('src', canvas.toDataURL('image/png'));
-    });
-    share.addEventListener('click', function (e) {
         var xhr = getXMLHTTPRequest();
         var data = new FormData;
-        console.log(photo.getAttribute('src'));
+        context.drawImage(video, 0, 0, 400, 300);
+        photo.setAttribute('src', canvas.toDataURL('image/png'));
         data.append('img', photo.getAttribute('src'));
-        e.preventDefault();
         xhr.open('POST', 'index.php?p=user.dlphoto');
-        console.log(data);
         xhr.send(data);
-    })
+        galleryperso(readData);
+    });
 }) ();

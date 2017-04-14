@@ -8,7 +8,7 @@
     </head>
 <body>
     <?= $header; ?>
-<div class="heart">
+<div class="heart" id="heart">
     <?= $content; ?>
 </div>
 <div class="footer">

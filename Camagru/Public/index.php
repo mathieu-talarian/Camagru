@@ -13,19 +13,3 @@ else {
 
 App::getController()->URL($page);
 ?>
-<div style="display: flex;flex-direction: column">
-    <div><p>Debug</p></div>
-    <div>
-<?php
-
-\Core\Debug\Debug::getInstance()->session;
-
-?>
-    </div>
-    <div>
-    <form action="index.php" method="get">
-        <input type="hidden" name="p" value="home.restart_session">
-        <button type="submit" style="color: red">RESTART SESSION</button>
-    </form>
-    </div>
-</div>
