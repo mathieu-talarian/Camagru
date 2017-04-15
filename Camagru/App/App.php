@@ -78,8 +78,4 @@ class App
         }
         return self::$_AppController;
     }
-
-    public function protect_form ($str) {
-        return (htmlspecialchars($str));
-    }
 }

@@ -41,6 +41,7 @@
     };
 
     var readData = function (data) {
+        if (data) {
         console.log(data);
         var dt = JSON.parse(data);
         console.log(dt);
@@ -49,12 +50,16 @@
             gallery.removeChild(photos[i]);
         }
         for (var i = 0; i < dt.length; i++) {
-            var img =document.createElement('img');
+            var div = document.createElement('div');
+            div.id = 'gl';
+            var img = document.createElement('img');
             img.id = 'stamp';
             img.src = dt[i].contenu;
             img.width = 400 / 2;
             img.height = 300 / 2;
-            gallery.appendChild(img);
+            div.appendChild(img);
+            gallery.appendChild(div);
+        }
         }
     };
 
@@ -104,6 +109,7 @@
 
     galleryperso(readData);
     capture.addEventListener('click', function (e) {
+        galleryperso(readData);
         e.preventDefault();
         var xhr = getXMLHTTPRequest();
         var data = new FormData;

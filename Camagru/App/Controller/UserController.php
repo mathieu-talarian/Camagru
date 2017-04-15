@@ -69,7 +69,6 @@ class UserController extends AppController
         $images = $this->image->json_all();
         $form = new BootstrapForm($_POST);
         $this->render('user.gallery', compact('images'));
-
     }
 
     public function galleryperso() {
@@ -114,5 +113,11 @@ class UserController extends AppController
         $image = str_replace(' ', '+', $image);
         $image = base64_decode($image);
         return (imagecreatefromstring($image));
+    }
+
+    public function compte () {
+        Debug::getInstance()->post;
+        $form = new BootstrapForm($_POST);
+        $this->render('user.compte', compact('form'));
     }
 }

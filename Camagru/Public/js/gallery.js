@@ -55,7 +55,5 @@
             gallery.appendChild(div);
         }
     };
-
-
     aff_photo(callback);
 }) ();

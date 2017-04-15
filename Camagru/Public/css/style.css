@@ -63,4 +63,17 @@ body {
 .gallery {
     background: aqua;
     width: 40%;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    height:80vh;
+}
+
+#gl {
+    height: 20%;
+    width: 100%;
+}
+
+#stamp {
+
 }

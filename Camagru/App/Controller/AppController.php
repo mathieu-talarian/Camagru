@@ -50,7 +50,7 @@ class AppController extends Controller
             $action = $page[1];
         }
         $class = ucfirst($page[0]);
-        if ($class === 'Home' || $class === 'User' || $class === 'Error' || $class === 'Admin' || $class === 'Register') {
+        if ($class === 'Home' || $class === 'User' || $class === 'Error' || $class === 'Admin' || $class === 'Register' || $class === 'Restore') {
             $controller = '\App\Controller\\' . $class . 'Controller';
             $controller = new $controller;
             if (method_exists($controller, $action)) {

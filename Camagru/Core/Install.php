@@ -125,7 +125,16 @@ class Install
     protected function Install_user(MysqlDatabase $db) {
         if (!isset($_SESSION['install_user'])) {
             $model = new UserModel($db);
-            return $model->create(
+            $model->create(
+                [
+                    'pseudo' => 'ddupont',
+                    'passwd' => hash('whirlpool', 'flanbis'),
+                    'mail' => 'mathieu.moullec@gmail.com',
+                    'registered' => 1,
+                    'admin' => 0
+                ]
+            );
+            $model->create(
                 [
                     'pseudo' => 'mathmoul',
                     'passwd' => hash('whirlpool', 'flanbis'),
@@ -136,6 +145,7 @@ class Install
             );
 
         }
+        return 1;
     }
 
     /**

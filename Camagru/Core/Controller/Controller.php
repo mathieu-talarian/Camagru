@@ -50,6 +50,14 @@ class Controller
         return 1;
     }
 
+    public function protectform($form) {
+        return htmlspecialchars($form);
+    }
+
+    public function protect_hash($form) {
+        return hash('whirlpool', $this->protectform($form));
+    }
+
 //    public function e404() {
 //        $error = 'Error 404 not found';
 //        return $this->render('errors', compact('error'));

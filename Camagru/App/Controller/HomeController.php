@@ -36,10 +36,5 @@ class HomeController extends AppController
         }
     }
 
-    public function restart_session() {
-        \App::getInstance()->getDB()->delete_db();
-        session_destroy();
-        session_start();
-        require ('index.php');
-        }
+
 }

@@ -15,6 +15,10 @@ use Core\Model\Model;
 
 class UserModel extends Model
 {
+
+    public function login($pseudo) {
+        return $this->query("SELECT passwd from {$this->table} where pseudo = ?", [$pseudo], true);
+    }
     public function pseudo($pseudo) {
         return $this->query("
         SELECT pseudo from {$this->table}
@@ -63,5 +67,34 @@ class UserModel extends Model
             }
         }
         return false;
+    }
+
+    public function FindPswdWithId($id) {
+        return $this->query("
+        SELECT passwd from {$this->table} Where id= ?
+        ", [$id], true);
+    }
+
+    public function MajPswd ($id, $mdp) {
+        $table[] = $mdp;
+        $table[] = $id;
+        return $this->query ("UPDATE {$this->table} set passwd = ? where id = ?", $table);
+    }
+
+    public function all_pseudo($pseudo) {
+        return $this->query("SELECT * from {$this->table} where pseudo = ?", [$pseudo], true);
+    }
+
+    public function Updatepseudo ($npseudo, $id) {
+        $table[0] = $npseudo;
+        $table[1] = $id;
+        return $this->query("UPDATE {$this->table} set pseudo = ? where id = ?", $table);
+    }
+
+    public function Updatename($nnom, $nprenom, $id) {
+        $table[0] = $nnom;
+        $table[1] = $nprenom;
+        $table[2] = $id;
+        return $this->query("UPDATE {$this->table} set nom = ?, prenom = ? where id = ?", $table);
     }
 }

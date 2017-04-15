@@ -12,4 +12,5 @@ else {
 }
 
 App::getController()->URL($page);
+\Core\Debug\Debug::getInstance()->session;
 ?>
