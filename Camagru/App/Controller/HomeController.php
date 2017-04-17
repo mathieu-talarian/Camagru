@@ -27,9 +27,9 @@ class HomeController extends AppController
             $this->render('admin.index', compact('pseudo'));
         }
         else if ($this->loggued() === 1) {
-            $e = $this->user->findpseudowithid($_SESSION['auth']);
-            $pseudo = $e->pseudo;
-            $this->render('user.index', compact('pseudo'));
+            //$e = $this->user->findpseudowithid($_SESSION['auth']);
+            //$pseudo = $e->pseudo;
+            header('Location: index.php?p=user.index');
         }
         else {
             $this->render('home', compact('pseudo'));

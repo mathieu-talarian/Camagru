@@ -50,15 +50,14 @@
             gallery.removeChild(photos[i]);
         }
         for (var i = 0; i < dt.length; i++) {
-            var div = document.createElement('div');
-            div.id = 'gl';
             var img = document.createElement('img');
             img.id = 'stamp';
             img.src = dt[i].contenu;
             img.width = 400 / 2;
             img.height = 300 / 2;
-            div.appendChild(img);
-            gallery.appendChild(div);
+            // div.appendChild(img);
+            // gallery.appendChild(div);
+            gallery.appendChild(img);
         }
         }
     };

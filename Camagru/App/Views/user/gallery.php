@@ -16,3 +16,12 @@ else {
     <h>Pas de photos</h>
 <?php
 }
+?>
+
+
+<div id="comm" class="comm">
+    <form action="index.php?p=user.comment" method="post">
+        <?= $form->input('comm', 'Commenter', ['type' =>'textarea']); ?>
+        <button class="btn">commenter</button>
+    </form>
+</div>

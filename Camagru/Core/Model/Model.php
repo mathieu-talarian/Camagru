@@ -152,12 +152,12 @@ class Model
         }
     }
 
-    public function json_query ($statement, $attributes = null, $one = false) {
+    public function json_query ($statement, $attributes = null, $one = false, $to_encode = true) {
         if ($attributes) {
-            return ($this->db->json_prepare($statement, $attributes, $one));
+            return ($this->db->json_prepare($statement, $attributes, $one, $to_encode));
         }
         else {
-            return ($this->db->json_query($statement, $one));
+            return ($this->db->json_query($statement, $one, $to_encode));
         }
     }
 }

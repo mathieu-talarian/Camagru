@@ -110,7 +110,7 @@ class MysqlDatabase extends Database {
         return $datas;
     }
 
-    public function json_query($statement, $one = false) {
+    public function json_query($statement, $one = false, $to_encode) {
         $req = $this->getPDO()->query($statement);
         $req->setFetchMode(PDO::FETCH_ASSOC);
         if ($one) {
@@ -119,8 +119,12 @@ class MysqlDatabase extends Database {
         else {
             $datas = $req->fetchAll();
         }
-        return (json_encode($datas));
-
+        if (!$to_encode) {
+            return ($datas);
+        }
+        else {
+            return (json_encode($datas));
+        }
     }
 
     /**
@@ -154,7 +158,7 @@ class MysqlDatabase extends Database {
         return $datas;
     }
 
-    public function json_prepare($statement, $attributes, $one) {
+    public function json_prepare($statement, $attributes, $one, $to_encode) {
         $req = $this->getPDO()->prepare($statement);
         $req->execute($attributes);
         $req->setFetchMode(PDO::FETCH_ASSOC);
@@ -164,7 +168,12 @@ class MysqlDatabase extends Database {
         else {
             $datas = $req->fetchAll();
         }
-        return (json_encode($datas));
+        if (!$to_encode) {
+            return ($datas);
+        }
+        else {
+            return (json_encode($datas));
+        }
     }
 
     /**

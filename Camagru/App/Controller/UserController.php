@@ -62,13 +62,37 @@ class UserController extends AppController
     }
 
     public function getphotos (){
-        echo $this->image->json_all();
+        $t = null;
+        $r = $this->image->all_date();
+        $taille = count($r);
+        if (isset($_GET['g']) && $_GET['g']) {
+            $pt = (intval($_GET['g']) - 1) * 10;
+            $to = $pt + 9;
+        }
+        else {
+            $pt = 0;
+            $to = 9;
+        }
+            for ($i = $pt; $i < $taille && $i <= $to; $i++) {
+                $t[] = $r[$i];
+            }
+        if ($t === null) {
+            echo "[]";
+            return ;
+        }
+        else {
+            echo (json_encode($t));
+        }
+    }
+
+    public function allphotos() {
+        echo $this->image->json_all_date();
     }
 
     public function gallery() {
         $images = $this->image->json_all();
         $form = new BootstrapForm($_POST);
-        $this->render('user.gallery', compact('images'));
+        $this->render('user.gallery', compact('images', 'form'));
     }
 
     public function galleryperso() {
@@ -116,7 +140,6 @@ class UserController extends AppController
     }
 
     public function compte () {
-        Debug::getInstance()->post;
         $form = new BootstrapForm($_POST);
         $this->render('user.compte', compact('form'));
     }
