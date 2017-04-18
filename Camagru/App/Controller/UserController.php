@@ -90,7 +90,7 @@ class UserController extends AppController
     }
 
     public function gallery() {
-        $images = $this->image->json_all();
+        $images = $this->image->all();
         $form = new BootstrapForm($_POST);
         $this->render('user.gallery', compact('images', 'form'));
     }
@@ -142,5 +142,9 @@ class UserController extends AppController
     public function compte () {
         $form = new BootstrapForm($_POST);
         $this->render('user.compte', compact('form'));
+    }
+
+    public function comment() {
+        Debug::getInstance()->post;
     }
 }

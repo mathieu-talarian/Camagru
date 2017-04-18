@@ -27,13 +27,15 @@ return array (
        'contenu' => 'VARCHAR (5000)',
        'date' => 'DATETIME',
        'PRIMARY KEY' => '(id)'
+    ),
+    'commentaire' => array(
+        'id' => 'INT NOT NULL AUTO_INCREMENT',
+        'contenu' => 'VARCHAR (500)',
+        'photo_id' => 'INT',
+        'user_id' => 'INT',
+        'date' => 'DATETIME',
+        'PRIMARY KEY' => '(id)'
     )
-//    'category' => array(
-//        'id' => 'INT NOT NULL AUTO_INCREMENT',
-//        'titre' => 'VARCHAR (255)',
-//        'categorie_id' => 'INT',
-//        'PRIMARY KEY' => '(id)'
-//        ) ,
 //    'admin' => array (
 //        'id' => 'INT NOT NULL AUTO_INCREMENT',
 //        'name' => 'VARCHAR (255)',

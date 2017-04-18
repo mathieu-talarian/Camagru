@@ -129,7 +129,7 @@ class Install
                 [
                     'pseudo' => 'ddupont',
                     'passwd' => hash('whirlpool', 'flanbis'),
-                    'mail' => 'mathieu.moullec@gmail.com',
+                    'mail' => 'ddupont@gmail.com',
                     'registered' => 1,
                     'admin' => 0
                 ]

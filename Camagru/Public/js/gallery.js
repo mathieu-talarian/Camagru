@@ -3,7 +3,6 @@
  */
 
 (function () {
-
     var gallery = document.getElementById('heart');
     var form = document.getElementById('comm');
     gallery.removeChild(form);
@@ -73,7 +72,6 @@
     }
 
 
-
     var create_pages = function(nbr) {
         nbr = nbr / 10;
         for (var i = 0; i < nbr; i++) {
@@ -87,23 +85,66 @@
 
     var callback = function (dt) {
         datas = JSON.parse(dt);
-        console.log(datas);
         for(var i = 0; i < datas.length; i++) {
+            var f = form.cloneNode(true);
             var data = datas[i];
             var div = document.createElement('div');
             var img = document.createElement('img');
             var infos = document.createElement('div');
+            div.id = 'images no' + data.id;
+            f.id = data.id;
             img.src = data.contenu;
             img.id = data.id;
             infos.innerHTML = ('<p>' + data.pseudo + '</p>photographié le ' + data.date);
+            var champ = f.querySelector('.form-control');
+            champ.id = data.id;
+            champ.setAttribute('value', data.id);
             div.appendChild(infos);
             div.appendChild(img);
+            div.appendChild(f);
             gallery.appendChild(div);
+            fillcomments(div, data.id, comments);
         }
     };
 
+    var fillcomments = function(div, id, callback) {
 
+        var xhr = getXMLHTTPRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && (xhr.status == 200 || xhr.status == 0)) {
+                callback(xhr.responseText, div);
+            }
+            else {
+                // alert ('probleme de connection avec le serveur');
+            }
+        };
+        xhr.open('POST', 'index.php?p=commentaire.getcomm');
+        var form = new FormData();
+        form.append('id', id);
+        xhr.send(form);
+    }
+
+    var comments = function (rep, div) {
+        var comm = document.createElement('div');
+        comm.id = 'Commentaire';
+        datas = JSON.parse(rep);
+        comm.setAttribute('style', 'background: blue; padding: 10px')
+        for(var i = 0; i < datas.length; i++) {
+            var data = datas[i];
+            var da = document.createElement('div')
+            da.setAttribute('style', 'color:white; background: black; margin: 10px 0;')
+            da.id = 'commentaire';
+            da.innerHTML = data.pseudo + ' a commente le ' + data.date + '<br>' + data.contenu;
+            comm.appendChild(da);
+
+        }
+        div.appendChild(comm);
+    }
 
     all_photos(create_pages);
     aff_photo(callback);
+
+    var images = document.querySelectorAll('#image');
+    console.log(images);
+
 }) ();

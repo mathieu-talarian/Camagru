@@ -32,4 +32,8 @@ class ImageModel extends Model
         SELECT image.id, contenu, date, user_id, user.pseudo from {$this->table}
         LEFT JOIN user on image.user_id = user.id ORDER by date;", null, false, false);
     }
+
+    public function get_mail($photo_id) {
+        return $this->query("SELECT user_id, user.mail from {$this->table} LEFT JOIN user on image.user_id = user.id where image.id = ?;", [$photo_id], true);
+    }
 }

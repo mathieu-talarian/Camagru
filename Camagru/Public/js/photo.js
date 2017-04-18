@@ -65,5 +65,4 @@
         takepicture();
         ev.preventDefault();
     }, false);
-
 })();

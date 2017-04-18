@@ -28,4 +28,6 @@ class AdminController extends AppController
         unset ($_SESSION['admin']);
         header('Location: index.php');
     }
+
+    //TODO a enlever pas besoin dans le sujet
 }

@@ -168,6 +168,8 @@ class RegisterController extends AppController
         return $this->render('user.compte', compact('errors', 'form'));
     }
 
+    // TODO envoi du mail pour suivre sujet
+
     public function majname() {
         $errors = null;
         $form = new BootstrapForm($_POST);
