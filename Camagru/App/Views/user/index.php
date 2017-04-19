@@ -6,7 +6,13 @@
  * Time: 3:07 PM
  */
 
-?>  
+?>
+
+<form id ="del-btn" action="?p=image.delete" method="post" style="display: inline-flex;">
+    <input type="hidden" name="id" value="">
+    <button type="submit" class="" style="red" href="">Supprimer</button>
+</form>
+
     <div class="player">
         <div id="booth" class="booth">
             <video id="video" width="400" height="300"></video>

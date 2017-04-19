@@ -10,7 +10,7 @@ class ImageModel extends Model
     public function FindImagesWithId($id) {
         return
         $this->json_query("
-        SELECT contenu, date from {$this->table}
+        SELECT id, contenu, date from {$this->table}
         where user_id = ?
         ", [$id]);
     }

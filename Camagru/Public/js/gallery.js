@@ -136,7 +136,6 @@
             da.id = 'commentaire';
             da.innerHTML = data.pseudo + ' a commente le ' + data.date + '<br>' + data.contenu;
             comm.appendChild(da);
-
         }
         div.appendChild(comm);
     }

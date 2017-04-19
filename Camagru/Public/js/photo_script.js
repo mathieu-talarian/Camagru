@@ -3,6 +3,7 @@
  */
 
 (function () {
+
     /**
      * ajax object
      */
@@ -25,41 +26,58 @@
         return xhr;
     }
 
+    var config_btn;
     var galleryperso = function (callback) {
-      var gallery = document.getElementById('gallery');
-      var xhr = getXMLHTTPRequest();
-      xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4 && (xhr.status == 200 || xhr.status == 0)) {
-              callback(xhr.responseText);
-          }
-          else {
-              // alert ('probleme de connection avec le serveur');
-          }
-      };
-      xhr.open('GET', 'index.php?p=user.galleryperso', true);
-      xhr.send(null);
+        var gallery = document.getElementById('gallery');
+        var xhr = getXMLHTTPRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && (xhr.status == 200 || xhr.status == 0)) {
+                callback(xhr.responseText);
+            }
+            else {
+                // alert ('probleme de connection avec le serveur');
+            }
+        };
+        xhr.open('GET', 'index.php?p=user.galleryperso', true);
+        xhr.send(null);
     };
 
     var readData = function (data) {
         if (data) {
-        console.log(data);
-        var dt = JSON.parse(data);
-        console.log(dt);
-        var photos = gallery.querySelectorAll('#stamp');
-        for (var i = 0; i < photos.length; i++) {
-            gallery.removeChild(photos[i]);
+            var dt = JSON.parse(data);
+            var photos = gallery.querySelectorAll('#stamp');
+            for (var i = 0; i < photos.length; i++) {
+                gallery.removeChild(photos[i]);
+            }
+            for (var i = 0; i < dt.length; i++) {
+                var d = dt[i];
+                var del = del_btn.cloneNode(true);
+                config_btn(del, d.id);
+                var div = document.createElement('div');
+                div.id = 'photo_perso';
+                var img = document.createElement('img');
+                img.id = 'stamp';
+                img.src = d.contenu;
+                img.width = 400 / 2;
+                img.height = 300 / 2;
+                // div.appendChild(img);
+                // gallery.appendChild(div);
+                div.appendChild(img);
+                div.appendChild(del);
+                gallery.appendChild(div);
+            }
         }
-        for (var i = 0; i < dt.length; i++) {
-            var img = document.createElement('img');
-            img.id = 'stamp';
-            img.src = dt[i].contenu;
-            img.width = 400 / 2;
-            img.height = 300 / 2;
-            // div.appendChild(img);
-            // gallery.appendChild(div);
-            gallery.appendChild(img);
-        }
-        }
+    };
+
+    config_btn = function (del, id) {
+        console.log(id);
+        var h = "?p=image.delete&id=" + id;
+        console.log(h);
+        var input = del.children[0];
+        var btn = del.children[1];
+        input.attributes[1].value = 1;
+        btn.attributes[3].value = h;
+        console.log(input, btn);
     };
 
     /**
@@ -74,8 +92,11 @@
         photo = document.createElement('img'),
         capture = document.getElementById('capture'),
         share = document.createElement('a'),
+        del_btn = document.getElementById('del-btn'),
         gallery= document.getElementById('gallery');
 
+
+    document.getElementById('heart').removeChild(del_btn);
 
     /**
      * share button
