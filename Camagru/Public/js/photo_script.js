@@ -45,15 +45,17 @@
     var readData = function (data) {
         if (data) {
             var dt = JSON.parse(data);
-            var photos = gallery.querySelectorAll('#stamp');
+            console.log(dt.length);
+            var photos = gallery.querySelectorAll('#photo_perso');
             for (var i = 0; i < photos.length; i++) {
                 gallery.removeChild(photos[i]);
             }
             for (var i = 0; i < dt.length; i++) {
                 var d = dt[i];
+                var div = document.createElement('div');
+                div.innerHTML = d.id;
                 var del = del_btn.cloneNode(true);
                 config_btn(del, d.id);
-                var div = document.createElement('div');
                 div.id = 'photo_perso';
                 var img = document.createElement('img');
                 img.id = 'stamp';
@@ -65,6 +67,10 @@
                 div.appendChild(img);
                 div.appendChild(del);
                 gallery.appendChild(div);
+                del.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    //TODO ajax delete photo
+                })
             }
         }
     };
@@ -75,7 +81,7 @@
         console.log(h);
         var input = del.children[0];
         var btn = del.children[1];
-        input.attributes[1].value = 1;
+        input.attributes[1].value = id;
         btn.attributes[3].value = h;
         console.log(input, btn);
     };
@@ -87,13 +93,13 @@
         video = document.getElementById('video'),
         canvas = document.getElementById('canvas'),
         context = canvas.getContext('2d'),
-        booth = document.getElementById('booth');
+        booth = document.getElementById('booth'),
         vendorUrl = window.URL || window.webkitURL,
         photo = document.createElement('img'),
         capture = document.getElementById('capture'),
         share = document.createElement('a'),
         del_btn = document.getElementById('del-btn'),
-        gallery= document.getElementById('gallery');
+        gallery = document.getElementById('gallery');
 
 
     document.getElementById('heart').removeChild(del_btn);
@@ -129,15 +135,21 @@
 
     galleryperso(readData);
     capture.addEventListener('click', function (e) {
-        galleryperso(readData);
         e.preventDefault();
         var xhr = getXMLHTTPRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && (xhr.status == 200 || xhr.status == 0)) {
+                galleryperso(readData);
+            }
+            else {
+                // alert ('probleme de connection avec le serveur');
+            }
+        };
         var data = new FormData;
         context.drawImage(video, 0, 0, 400, 300);
         photo.setAttribute('src', canvas.toDataURL('image/png'));
         data.append('img', photo.getAttribute('src'));
         xhr.open('POST', 'index.php?p=user.dlphoto');
         xhr.send(data);
-        galleryperso(readData);
     });
 }) ();
