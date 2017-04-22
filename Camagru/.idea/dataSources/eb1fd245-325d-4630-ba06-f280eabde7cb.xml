@@ -10,71 +10,99 @@
     <schema id="4" parent="1" name="mysql"/>
     <schema id="5" parent="1" name="performance_schema"/>
     <schema id="6" parent="1" name="test"/>
-    <table id="7" parent="2" name="image"/>
-    <table id="8" parent="2" name="user"/>
-    <column id="9" parent="7" name="id">
+    <table id="7" parent="2" name="commentaire"/>
+    <table id="8" parent="2" name="image"/>
+    <table id="9" parent="2" name="user"/>
+    <column id="10" parent="7" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="10" parent="7" name="user_id">
-      <Position>2</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
     <column id="11" parent="7" name="contenu">
-      <Position>3</Position>
-      <DataType>varchar(5000)|0</DataType>
+      <Position>2</Position>
+      <DataType>varchar(500)|0</DataType>
     </column>
-    <column id="12" parent="7" name="date">
+    <column id="12" parent="7" name="photo_id">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="13" parent="7" name="user_id">
       <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="14" parent="7" name="date">
+      <Position>5</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <key id="13" parent="7" name="PRIMARY">
+    <key id="15" parent="7" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="14" parent="8" name="id">
+    <column id="16" parent="8" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="15" parent="8" name="nom">
+    <column id="17" parent="8" name="user_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="18" parent="8" name="contenu">
+      <Position>3</Position>
+      <DataType>varchar(5000)|0</DataType>
+    </column>
+    <column id="19" parent="8" name="date">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <key id="20" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="21" parent="9" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="22" parent="9" name="nom">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="16" parent="8" name="prenom">
+    <column id="23" parent="9" name="prenom">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="17" parent="8" name="pseudo">
+    <column id="24" parent="9" name="pseudo">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="18" parent="8" name="mail">
+    <column id="25" parent="9" name="mail">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="19" parent="8" name="passwd">
+    <column id="26" parent="9" name="passwd">
       <Position>6</Position>
       <DataType>varchar(500)|0</DataType>
     </column>
-    <column id="20" parent="8" name="register_token">
+    <column id="27" parent="9" name="register_token">
       <Position>7</Position>
       <DataType>varchar(100)|0</DataType>
     </column>
-    <column id="21" parent="8" name="registered">
+    <column id="28" parent="9" name="registered">
       <Position>8</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="22" parent="8" name="admin">
+    <column id="29" parent="9" name="admin">
       <Position>9</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <key id="23" parent="8" name="PRIMARY">
+    <key id="30" parent="9" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

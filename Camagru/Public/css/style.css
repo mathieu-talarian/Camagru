@@ -4,6 +4,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    overflow: scroll;
     /*background-color: honeydew;*/
 }
 
@@ -76,4 +77,11 @@ body {
 
 #stamp {
 
+}
+
+.core {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: scroll;
 }

@@ -42,9 +42,8 @@ class ImageModel extends Model
         return $this->query("SELECT user_id, user.mail from {$this->table} LEFT JOIN user on image.user_id = user.id where image.id = ?;", [$photo_id], true);
     }
 
-    public function getUserIdByPhoto($id)
-    {
-        return $this->query("SELECT user_id from image where id =?;", [$id], true);
+    public function getDataByPhoto($id) {
+        return $this->query("SELECT * from {$this->table} where id = ?", [$id], true);
     }
 
     public function deletephoto($id) {

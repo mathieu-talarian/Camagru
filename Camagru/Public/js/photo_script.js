@@ -45,7 +45,6 @@
     var readData = function (data) {
         if (data) {
             var dt = JSON.parse(data);
-            console.log(dt.length);
             var photos = gallery.querySelectorAll('#photo_perso');
             for (var i = 0; i < photos.length; i++) {
                 gallery.removeChild(photos[i]);
@@ -67,23 +66,34 @@
                 div.appendChild(img);
                 div.appendChild(del);
                 gallery.appendChild(div);
-                del.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    //TODO ajax delete photo
-                })
             }
         }
     };
 
     config_btn = function (del, id) {
-        console.log(id);
         var h = "?p=image.delete&id=" + id;
-        console.log(h);
         var input = del.children[0];
         var btn = del.children[1];
         input.attributes[1].value = id;
         btn.attributes[3].value = h;
-        console.log(input, btn);
+        del.addEventListener('click', function (e) {
+            e.preventDefault();
+            var xhr = getXMLHTTPRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && (xhr.status == 200 || xhr.status == 0)) {
+                    alert(JSON.parse(xhr.responseText));
+                    galleryperso(readData);
+                }
+                else {
+                    //TODO upload image perso
+                    // alert ('probleme de connection avec le serveur');
+                }
+            };
+            xhr.open('POST', h);
+            var form = new FormData;
+            form.append('id', id);
+            xhr.send(form);
+        })
     };
 
     /**

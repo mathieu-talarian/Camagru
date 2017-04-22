@@ -84,6 +84,11 @@
     }
 
     var callback = function (dt) {
+        var core = document.createElement('div');
+        core.id = 'core';
+        core.className = 'core';
+        core.setAttribute('overflow', 'scollable');
+        gallery.appendChild(core);
         datas = JSON.parse(dt);
         for(var i = 0; i < datas.length; i++) {
             var f = form.cloneNode(true);
@@ -102,7 +107,7 @@
             div.appendChild(infos);
             div.appendChild(img);
             div.appendChild(f);
-            gallery.appendChild(div);
+            core.appendChild(div);
             fillcomments(div, data.id, comments);
         }
     };

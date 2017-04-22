@@ -24,15 +24,16 @@ class ImageController extends AppController
         $errors = null;
         $id = $_POST['id'];
         $user_id = $_SESSION['auth'];
-        $photo_user_id = $this->image->getUserIdByPhoto($id)->user_id;
-        Debug::getInstance()->vd($user_id);
-        Debug::getInstance()->vd($photo_user_id);
+        $photo = $this->image->getDatabyPhoto($id);
+        $photo_user_id = $photo->user_id;
+        $photo_uniqid = $photo->contenu;
         if ($user_id === $photo_user_id) {
             $this->image->deletephoto($id);
-            $errors = "photo deleted";
+            unlink($photo_uniqid);
+            echo json_encode('Photo effacée');
         }
         else {
-            $errors[] =  "You can't delete this photo";
+            echo json_encode('Vous ne pouvez pas effacer cette photo');
         }
     }
 }
