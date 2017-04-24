@@ -143,8 +143,4 @@ class UserController extends AppController
         $form = new BootstrapForm($_POST);
         $this->render('user.compte', compact('form'));
     }
-
-    public function comment() {
-        Debug::getInstance()->post;
-    }
 }

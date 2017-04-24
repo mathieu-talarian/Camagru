@@ -14,12 +14,29 @@
 </form>
 
     <div class="player">
+        <div>
+                <input value="Changer de photo" id="file" type="file" name="image" accept="image/png">
+        </div>
         <div id="booth" class="booth">
             <video id="video" width="400" height="300"></video>
             <a href="#" id="capture" class="booth-capture-button">
                 Take photo
             </a>
             <canvas id="canvas" width="400" height="300"></canvas>
+        </div>
+        <div id="masques-gallery" class="masques-gallery">
+            <div class="image-height">
+                <img id="masque" class="masque" src="Public/images/m1.jpeg" alt="">
+            </div>
+            <div class="image-height">
+                <img id="masque" class="masque" src="Public/images/m2.png" alt="">
+            </div>
+            <div class="image-height">
+                <img id="masque" class="masque" src="Public/images/m3.png" alt="">
+            </div>
+            <div class="image-height">
+                <img id="masque" class="masque" src="Public/images/white.png" alt="">
+            </div>
         </div>
     </div>
         <div id="gallery" class="gallery">
