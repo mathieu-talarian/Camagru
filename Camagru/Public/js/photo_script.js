@@ -24,9 +24,8 @@
             return null;
         }
         return xhr;
-    }
+    };
 
-    var config_btn;
     var galleryperso = function (callback) {
         var gallery = document.getElementById('gallery');
         var xhr = getXMLHTTPRequest();
@@ -70,7 +69,7 @@
         }
     };
 
-    config_btn = function (del, id) {
+    var config_btn = function (del, id) {
         var h = "?p=image.delete&id=" + id;
         var input = del.children[0];
         var btn = del.children[1];
@@ -95,41 +94,6 @@
         })
     };
 
-    /**
-     * variables
-     */
-    var
-        player = document.querySelector('.player');
-        video = document.getElementById('video'),
-        canvas = document.getElementById('canvas'),
-        context = canvas.getContext('2d'),
-        booth = document.getElementById('booth'),
-        vendorUrl = window.URL || window.webkitURL,
-        photo = document.createElement('img'),
-        capture = document.getElementById('capture'),
-        share = document.createElement('a'),
-        del_btn = document.getElementById('del-btn'),
-        file = document.getElementById('file'),
-        img = document.createElement('img'),
-        gallery = document.getElementById('gallery');
-    var masques_gallery = document.getElementById('masques-gallery');
-    var masques = masques_gallery.querySelectorAll('.masque');
-    var selected = null;
-
-
-    document.getElementById('heart').removeChild(del_btn);
-
-    /**
-     * share button
-     */
-    share.href = "#";
-    share.id = "share";
-    share.className = "booth-capture-button";
-    share.text = 'Share photo';
-
-    /**
-     * navigateur
-     */
     var play = function () {
         navigator.getMedia = navigator.getUserMedia ||
             navigator.webkitGetUserMedia ||
@@ -147,83 +111,148 @@
                 e.preventDefault();
             }
         );
-    }
-
-    var image_dl = function() {
-            function createThumbnail(file) {
-                var reader = new FileReader();
-                reader.addEventListener('load', function() {
-                    var imgElement = document.createElement('img');
-                    imgElement.style.maxWidth = '150px';
-                    imgElement.style.maxHeight = '150px';
-                    imgElement.src = this.result;
-                    booth.removeChild(video);
-                    booth.removeChild(capture);
-                    img.src = imgElement.src;
-                    img.height = 300;
-                    img.width = 400;
-                    booth.appendChild(img);
-                    booth.appendChild(capture);
-                    create_button_video();
-                });
-                reader.readAsDataURL(file);
-            }
-            var allowedTypes = ['png', 'jpg', 'jpeg', 'gif'];
-            file.addEventListener('change', function() {
-                var files = this.files,
-                    filesLen = files.length,
-                    imgType;
-                for (var i = 0; i < filesLen; i++) {
-                    imgType = files[i].name.split('.');
-                    imgType = imgType[imgType.length - 1];
-                    if (allowedTypes.indexOf(imgType) != -1) {
-                        createThumbnail(files[i]);
-                    }
-                }
-            });
     };
 
-    // var create_del_btn = function () {
-    //     if (booth.lastChild.id !== 'delbtn') {
-    //         var delbtn = document.createElement('div');
-    //         delbtn.id = 'delbtn';
-    //         delbtn.classList = 'btn';
-    //         var a = document.createElement('a');
-    //         a.href = '#';
-    //         a.id = 'del_mask';
-    //         a.innerHTML = 'Delete Selected Mask';
-    //         a.classList = 'booth-capture-button';
-    //         delbtn.appendChild(a);
-    //         booth.appendChild(delbtn);
-    //         delbtn.addEventListener('click', function (e) {
-    //             e.preventDefault();
-    //             selected.removeAttribute('style');
-    //             selected = null;
-    //             player.removeChild(player.lastElementChild);
-    //             booth.removeChild(delbtn);
-    //         });
-    //     };
-    // };
-
+    var image_dl = function() {
+        function createThumbnail(file) {
+            var reader = new FileReader();
+            reader.addEventListener('load', function() {
+                var imgElement = document.createElement('img');
+                imgElement.style.maxWidth = '150px';
+                imgElement.style.maxHeight = '150px';
+                imgElement.src = this.result;
+                mozaic.removeChild(video);
+                img.id = "video";
+                img.classList = "video";
+                img.src = imgElement.src;
+                img.height = 300;
+                img.width = 400;
+                mozaic.appendChild(img);
+                create_button_video();
+            });
+            reader.readAsDataURL(file);
+        }
+        var allowedTypes = ['png', 'jpg', 'jpeg', 'gif'];
+        file.addEventListener('change', function() {
+            var files = this.files,
+                filesLen = files.length,
+                imgType;
+            for (var i = 0; i < filesLen; i++) {
+                imgType = files[i].name.split('.');
+                imgType = imgType[imgType.length - 1];
+                if (allowedTypes.indexOf(imgType) != -1) {
+                    createThumbnail(files[i]);
+                }
+            }
+        });
+    };
 
     var create_button_video = function () {
-        div = document.createElement('div');
-        btn = document.createElement('button');
+        var div = document.createElement('div');
+        var btn = document.createElement('button');
         div.appendChild(btn);
         player.appendChild(div);
         btn.innerHTML = 'Video';
         btn.addEventListener('click', function (e) {
             e.preventDefault();
-            booth.removeChild(img);
-            booth.removeChild(capture);
-            booth.appendChild(video);
-            booth.appendChild(capture);
+            mozaic.removeChild(img);
+            mozaic.appendChild(video);
             player.removeChild(div);
             play();
         })
     };
 
-    mask();
+    var mask_photo = function () {
+      for (var i = 0; i < masques.length; i++) {
+          var masque = masques[i];
+          masque.addEventListener('click', function (e) {
+              if (!selected) {
+                  selected = this;
+                  selected.setAttribute('style', 'opacity: 0.5');
+              }
+              else {
+                  selected.removeAttribute('style');
+                  if (selected === this) {
+                      e.preventDefault();
+                      alert('ne pas utiliser le meme masque');
+                  }
+                  selected = this;
+                  selected.setAttribute('style', 'opacity: 0.5');
+              }
+              e.stopPropagation();
+              var img = document.createElement('img');
+              img.src = selected.src;
+              img.id = 'mas';
+              img.setAttribute('style',
+                  "position: absolute; bottom:" +
+                  (video.height / 2 - img.height / 2) +
+                  "px; right: " +
+                  (video.width / 2 - img.width / 2) +
+                  "px; z-index:10;");
+              if (mozaic.lastElementChild.id !== 'video') {
+                  mozaic.removeChild(mozaic.lastElementChild);
+                  booth.removeChild(capture);
+              }
+              img.setAttribute('draggable', 'true');
+              var test = mozaic.appendChild(img);
+              booth.appendChild(capture);
+              test.style.cursor = "move";
+              test.addEventListener('dragstart', function (e) {
+                  e.dataTransfer.setData('image/png', '');
+                  e.dataTransfer.setDragImage(this, this.width / 2, this.height / 2);
+              })
+              video.addEventListener('dragover', function (e) {
+                  e.preventDefault();
+              })
+              player.addEventListener('drop', function (e) {
+                  e.preventDefault();
+                  var x = mozaic.clientWidth - 10 - e.layerX - (test.width / 2);
+                  var y = mozaic.clientHeight - 10 - e.layerY - (test.height / 2);
+                  test.setAttribute('style', 'position: absolute; z-index: 10; cursor: move; right: ' + x + 'px; bottom : ' + y + 'px;');
+              })
+          })
+      }
+    };
+
+    /**
+     * variables
+     */
+    var
+        player = document.querySelector('.player'),
+        video = document.getElementById('video'),
+        canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        booth = document.getElementById('booth'),
+        vendorUrl = window.URL || window.webkitURL,
+        photo = document.createElement('img'),
+        capture = document.createElement('a'),
+        del_btn = document.getElementById('del-btn'),
+        file = document.getElementById('file'),
+        img = document.createElement('img'),
+        gallery = document.getElementById('gallery'),
+        masques_gallery = document.getElementById('masques-gallery'),
+        mozaic = document.getElementById('mozaic'),
+        masques = masques_gallery.querySelectorAll('.masque'),
+        selected = null;
+    /** */
+
+    /** enlever le boutton supprimer */
+     document.getElementById('heart').removeChild(del_btn);
+     /** */
+
+
+    /**
+     * capture
+     */
+    capture.href = "#";
+    capture.id = "share";
+    capture.className = "booth-capture-button";
+    capture.text = 'Take and Share photo';
+
+
+
+
+    mask_photo();
     play();
     image_dl();
     galleryperso(readData);
@@ -232,16 +261,31 @@
         var xhr = getXMLHTTPRequest();
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && (xhr.status == 200 || xhr.status == 0)) {
-                galleryperso(readData);
+                var ret = JSON.parse(xhr.responseText);
+                if (ret === 'Des donnees manquent')
+                {
+                    alert (ret);
+                    return;
+                }
+                else {
+                    galleryperso(readData);
+                }
             }
             else {
-                // alert ('probleme de connection avec le serveur');
+                //alert ('probleme de connection avec le serveur');
             }
         };
         var data = new FormData;
-        context.drawImage(video, 0, 0, 400, 300);
+        var vid = document.getElementById('video');
+        var mas = document.getElementById('mas');
+        context.drawImage(vid, 0, 0, 400, 300);
         photo.setAttribute('src', canvas.toDataURL('image/png'));
         data.append('img', photo.getAttribute('src'));
+        data.append('mask', mas.getAttribute('src'));
+        data.append('right', mas.style.right);
+        data.append('bottom', mas.style.bottom);
+        data.append('x', mas.height);
+        data.append('y', mas.width);
         xhr.open('POST', 'index.php?p=user.dlphoto');
         xhr.send(data);
     });

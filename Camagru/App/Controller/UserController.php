@@ -107,7 +107,29 @@ class UserController extends AppController
     /**
      *
      */
+    public function check_set_post() {
+        if (
+            isset($_POST['mask']) && $_POST['mask'] &&
+            isset($_POST['right']) && $_POST['right'] &&
+            isset($_POST['bottom']) && $_POST['bottom'] &&
+            isset($_POST['x']) && $_POST['x'] &&
+            isset($_POST['x']) && $_POST['x'] &&
+            isset($_POST['y']) && $_POST['y']
+        ) {
+            return (1);
+        }
+        return (0);
+    }
+
+
     public function dlphoto () {
+        if (!$this->check_set_post()) {
+            echo (json_encode('Des donnees manquent'));
+            return ;
+        }
+        else {
+            echo(json_encode(' '));
+        }
         $image = $this->gest_image($_POST['img']);
         $id_uniq = uniqid();
         $filepath = $this->file_path($_SESSION['auth'], $id_uniq);

@@ -85,3 +85,18 @@ body {
     justify-content: center;
     overflow: scroll;
 }
+
+.mozaic {
+    height: 300px;
+    width: 400px;
+    position: relative;
+}
+
+.booth {
+    height: 300px;
+    width: 400px;
+    float: right;
+    background-color: #ccc;
+    border: 10px solid #ddd;
+    margin: 0px auto;
+}

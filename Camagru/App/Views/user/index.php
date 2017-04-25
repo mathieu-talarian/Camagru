@@ -15,13 +15,12 @@
 
     <div class="player">
         <div>
-                <input value="Changer de photo" id="file" type="file" name="image" accept="image/png">
+                <input class="booth-capture-button" value="Changer de photo" id="file" type="file" name="image" accept="image/png">
         </div>
         <div id="booth" class="booth">
-            <video id="video" width="400" height="300"></video>
-            <a href="#" id="capture" class="booth-capture-button">
-                Take photo
-            </a>
+            <div id="mozaic" class="mozaic">
+            <video class="video" id="video" width="400" height="300"></video>
+                </div>
             <canvas id="canvas" width="400" height="300"></canvas>
         </div>
         <div id="masques-gallery" class="masques-gallery">
