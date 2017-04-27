@@ -49,7 +49,7 @@ body {
     font-family: sans-serif;
 }
 
-#canvas {
+canvas {
     display: none;
 }
 
@@ -99,4 +99,31 @@ body {
     background-color: #ccc;
     border: 10px solid #ddd;
     margin: 0px auto;
+}
+
+@media (max-width: 1300px) {
+    .player {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .booth {
+        display: flex;
+        flex-direction: row;
+    }
+    
+}
+
+
+@media (max-width: 1000px) {
+    .player {
+        width: 100%;
+        display: flex;
+    }
+    .gallery {
+        width: 100%;
+        height: 200px;
+        flex-direction: row;
+        overflow: scroll;
+    }
 }

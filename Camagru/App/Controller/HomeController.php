@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use Core\Debug\Debug;
+use Core\Install;
 
 class HomeController extends AppController
 {
@@ -36,5 +37,8 @@ class HomeController extends AppController
         }
     }
 
-
+    public function set() {
+        \App::getInstance()->install_my_users();
+        header('Location: index.php');
+    }
 }

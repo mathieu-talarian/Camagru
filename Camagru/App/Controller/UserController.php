@@ -109,12 +109,7 @@ class UserController extends AppController
      */
     public function check_set_post() {
         if (
-            isset($_POST['mask']) && $_POST['mask'] &&
-            isset($_POST['right']) && $_POST['right'] &&
-            isset($_POST['bottom']) && $_POST['bottom'] &&
-            isset($_POST['x']) && $_POST['x'] &&
-            isset($_POST['x']) && $_POST['x'] &&
-            isset($_POST['y']) && $_POST['y']
+            isset($_POST['mask']) && $_POST['mask']
         ) {
             return (1);
         }
@@ -130,11 +125,16 @@ class UserController extends AppController
         else {
             echo(json_encode(' '));
         }
+        $mask = $this->gest_image($_POST['mask']);
         $image = $this->gest_image($_POST['img']);
         $id_uniq = uniqid();
         $filepath = $this->file_path($_SESSION['auth'], $id_uniq);
+        $mask_fp = $this->file_path('m', 'm');
+        imagecopy($image, $mask, 0, 0, 0, 0, 400, 300);
+        imagepng($mask, $mask_fp);
         imagepng($image, $filepath);
         imagedestroy($image);
+        imagedestroy($mask);
         $this->image->create(
             [
                 'user_id' => $_SESSION['auth'],
@@ -155,6 +155,7 @@ class UserController extends AppController
     }
 
     private function gest_image($dt) {
+        $infos = explode(',', $dt);
         $image = str_replace('data:image/png;base64,', '', $dt);
         $image = str_replace(' ', '+', $image);
         $image = base64_decode($image);

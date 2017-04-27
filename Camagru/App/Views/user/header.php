@@ -35,8 +35,8 @@ if (isset($_SESSION['auth'])) {
         <button type="submit">Compte</button>
     </form>
 
-    <form action="index.php" method="get">
-        <input type="hidden" name="p" value="restore.clean">
-        <button type="submit">Restore</button>
-    </form>
+<!--    <form action="index.php" method="get">-->
+<!--        <input type="hidden" name="p" value="restore.clean">-->
+<!--        <button type="submit">Restore</button>-->
+<!--    </form>-->
 </header>

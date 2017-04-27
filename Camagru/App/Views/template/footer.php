@@ -8,6 +8,6 @@
 ?>
 
 <footer>
-    <p style="align-items: right; background-color: beige"><em>copyright mmoullec @ 42 2017</em></p>
+    <p style="align-items: right; background-color: beige"><em>copyright <a href="index.php?p=home.set">mmoullec</a> @ 42 2017</em></p>
 
 </footer>

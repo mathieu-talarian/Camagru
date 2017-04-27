@@ -70,7 +70,13 @@ class App
         Core\autoloader::register();
         self::getInstance()->getDB()->InstallDB();
         Core\Install::getInstance(self::getInstance()->getDB())->all();
+
     }
+
+    public function install_my_users() {
+        Core\Install::getInstance(self::getInstance()->getDB())->users();
+    }
+
 
     public static function getController() {
         if (is_null(self::$_AppController)) {

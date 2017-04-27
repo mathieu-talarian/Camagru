@@ -60,7 +60,8 @@ class UserModel extends Model
 
     public function CheckAdmin($var) {
         $req = $this->query("SELECT * FROM USER WHERE pseudo = ?", [$var['pseudo']], true);
-        if ($var['pseudo'] === $req->pseudo) {
+//        Debug::getInstance()->vd($req);
+        if ($req && $var['pseudo'] === $req->pseudo) {
             if (hash('whirlpool', $var['passwd']) === $req->passwd) {
                 if ($req->admin === '1')
                     return true;

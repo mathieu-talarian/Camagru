@@ -148,15 +148,16 @@ class Install
         return 1;
     }
 
+    public function users() {
+        $this->Install_admin(self::$_db);
+        $this->Install_user(self::$_db);
+    }
+
     /**
      * A Enlever
      * Installation de all
      */
     public function all() {
         $this->Setup(self::$_tables, self::$_db);
-        $this->Install_admin(self::$_db);
-        $this->Install_user(self::$_db);
-        $_SESSION['install_user'] = 'ok';
-        $_SESSION['install_admin'] = 'ok';
     }
 }

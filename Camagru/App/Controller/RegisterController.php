@@ -33,7 +33,9 @@ class RegisterController extends AppController
                     $_SESSION['admin'] = true;
                     return (header('Location: index.php?p=admin.index'));
                 }
-                if ($this->user->CheckRegistered($_POST['pseudo'])->registered) {
+                $t = $this->user->CheckRegistered($_POST['pseudo']);
+//                Debug::getInstance()->vd($t);
+                if ($t && $t->registered !== null) {
                     $usr = $this->user->all_pseudo($this->protectform($_POST['pseudo']));
                     if ($usr->passwd === $this->protect_hash($_POST['passwd'])) {
                         $_SESSION['auth'] = $usr->id;
@@ -42,7 +44,7 @@ class RegisterController extends AppController
                         $errors[] = 'Identifiants incorrects';
                     }
                 } else {
-                    $errors[] = 'Vous n\'avez pas confirme votre compte';
+                    $errors[] = 'Vous n\'etes pas inscit ou vous n\'avez pas confirme votre compte';
                 }
             }
             $form = new BootstrapForm($_POST);

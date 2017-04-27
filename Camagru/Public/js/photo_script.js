@@ -117,6 +117,11 @@
         function createThumbnail(file) {
             var reader = new FileReader();
             reader.addEventListener('load', function() {
+                if (mozaic.lastElementChild.tagName === 'IMG') {
+                    selected.removeAttribute('style');
+                    selected = null;
+                    mozaic.removeChild(mozaic.lastElementChild);
+                }
                 var imgElement = document.createElement('img');
                 imgElement.style.maxWidth = '150px';
                 imgElement.style.maxHeight = '150px';
@@ -132,7 +137,7 @@
             });
             reader.readAsDataURL(file);
         }
-        var allowedTypes = ['png', 'jpg', 'jpeg', 'gif'];
+        var allowedTypes = ['png'];
         file.addEventListener('change', function() {
             var files = this.files,
                 filesLen = files.length,
@@ -198,13 +203,17 @@
               booth.appendChild(capture);
               test.style.cursor = "move";
               test.addEventListener('dragstart', function (e) {
+                  console.log('1');
                   e.dataTransfer.setData('image/png', '');
                   e.dataTransfer.setDragImage(this, this.width / 2, this.height / 2);
               })
-              video.addEventListener('dragover', function (e) {
+              document.getElementById('video').addEventListener('dragover', function (e) {
+                  console.log('2');
                   e.preventDefault();
               })
-              player.addEventListener('drop', function (e) {
+
+              booth.addEventListener('drop', function (e) {
+                  console.log('test');
                   e.preventDefault();
                   var x = mozaic.clientWidth - 10 - e.layerX - (test.width / 2);
                   var y = mozaic.clientHeight - 10 - e.layerY - (test.height / 2);
@@ -221,10 +230,13 @@
         player = document.querySelector('.player'),
         video = document.getElementById('video'),
         canvas = document.getElementById('canvas'),
+        canvas2 = document.getElementById('canvas2'),
         context = canvas.getContext('2d'),
+        context2 = canvas2.getContext('2d'),
         booth = document.getElementById('booth'),
         vendorUrl = window.URL || window.webkitURL,
         photo = document.createElement('img'),
+        photo2 = document.createElement('img'),
         capture = document.createElement('a'),
         del_btn = document.getElementById('del-btn'),
         file = document.getElementById('file'),
@@ -265,7 +277,7 @@
                 if (ret === 'Des donnees manquent')
                 {
                     alert (ret);
-                    return;
+                   exit;
                 }
                 else {
                     galleryperso(readData);
@@ -278,14 +290,19 @@
         var data = new FormData;
         var vid = document.getElementById('video');
         var mas = document.getElementById('mas');
+        var r = parseInt(mas.style.right);
+        var b = parseInt(mas.style.bottom);
+        var y = mas.height;
+        var x = mas.width;
+        var he = vid.height - (b + y);
+        var wi = vid.width - (r + x);
         context.drawImage(vid, 0, 0, 400, 300);
+        context2.clearRect(0, 0, canvas2.width, canvas2.height);
+        context2.drawImage(mas, wi, he, mas.width, mas.height);
         photo.setAttribute('src', canvas.toDataURL('image/png'));
+        photo2.setAttribute('src', canvas2.toDataURL('image/png'));
         data.append('img', photo.getAttribute('src'));
-        data.append('mask', mas.getAttribute('src'));
-        data.append('right', mas.style.right);
-        data.append('bottom', mas.style.bottom);
-        data.append('x', mas.height);
-        data.append('y', mas.width);
+        data.append('mask', photo2.getAttribute('src'));
         xhr.open('POST', 'index.php?p=user.dlphoto');
         xhr.send(data);
     });

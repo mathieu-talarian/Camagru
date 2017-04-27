@@ -22,6 +22,7 @@
             <video class="video" id="video" width="400" height="300"></video>
                 </div>
             <canvas id="canvas" width="400" height="300"></canvas>
+            <canvas id="canvas2" width="400" height="300"></canvas>
         </div>
         <div id="masques-gallery" class="masques-gallery">
             <div class="image-height">

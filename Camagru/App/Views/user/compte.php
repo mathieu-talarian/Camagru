@@ -14,11 +14,11 @@
             <?= $error; ?>
             <?php endforeach; ?>
     <?php endif; ?>
-<form action="index.php?p=register.majmdp" method="post">
-<?= $form->input_required('ancienmdp', 'Ancien mot de passe', ['type' => 'password']); ?>
-<?= $form->input_required('nouveaumdp', 'Nouveau mot de passe', ['type' => 'password']); ?>
-<?= $form->input_required('conf', 'Confirmation du mouveau passe', ['type' => 'password']); ?>
-<button class="btn btn-primary">Mise a jour du mdp</button>
+<!--<form action="index.php?p=register.majmdp" method="post">-->
+<?//= $form->input_required('ancienmdp', 'Ancien mot de passe', ['type' => 'password']); ?>
+<?//= $form->input_required('nouveaumdp', 'Nouveau mot de passe', ['type' => 'password']); ?>
+<?//= $form->input_required('conf', 'Confirmation du mouveau passe', ['type' => 'password']); ?>
+<button id="maj-mdp" class="btn btn-primary">Mise a jour du mdp</button>
 </form>
 </div>
 
@@ -33,3 +33,5 @@
     <?= $form->input_required('newprenom', 'Nouveau prenom'); ?>
     <button>Mise a jour du nom et prenom</button>
 </form>
+
+<script src="Public/js/mdp.js" type="text/javascript"></script>
