@@ -85,6 +85,7 @@ class UserController extends AppController
         }
     }
 
+
     public function allphotos() {
         echo $this->image->json_all_date();
     }

@@ -21,6 +21,14 @@ if (isset($images) && $images) {
     </form>
 </div>
 
+    <div id="like">
+        <button class="btn">Like</button>
+    </div>
+
+    <div class="dislike" id="dislike">
+        <button class="btn">Dislike</button>
+    </div>
+
     <script src="Public/js/gallery.js"></script>
     <?php
 }

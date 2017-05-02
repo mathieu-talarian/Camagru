@@ -18,6 +18,7 @@ class ImageController extends AppController
         parent::__construct();
         $this->loadModel('user');
         $this->loadModel('image');
+        $this->loadModel('lk');
     }
 
     public function delete() {
@@ -35,5 +36,16 @@ class ImageController extends AppController
         else {
             echo json_encode('Vous ne pouvez pas effacer cette photo');
         }
+    }
+
+    public function like() {
+        $photo_id = $_POST['photo_id'];
+//        Debug::getInstance()->vd($this->lk->getlikesbyphoto($photo_id));
+    }
+
+    public function userlikeimage() {
+        $user_id = $_SESSION['auth'];
+        $image_id = $_POST['image_id'];
+        echo $this->lk->userlikeimage($user_id, $image_id);
     }
 }

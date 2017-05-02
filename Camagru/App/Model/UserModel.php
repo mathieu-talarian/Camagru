@@ -39,11 +39,44 @@ class UserModel extends Model
         WHERE mail =?", [$mail], true);
     }
 
+    public function lock_user($mail) {
+        $table[] = 1;
+        $table[] = $mail;
+        return $this->query("UPDATE 
+          {$this->table} set locked = ? where mail = ?",
+            $table);
+    }
+
+    public function unlock($id) {
+        return $this->query("UPDATE {$this->table} set locked = 0 where id = ?", [$id]);
+    }
+
+    public function locked($mail) {
+        return intval($this->query("SELECT locked from user where mail = ?", [$mail], true)->locked);
+    }
+
     public function SelectTokenByPseudo($pseudo) {
         return $this->query("
         SELECT register_token, registered from user
         WHERE pseudo = ?", [$pseudo], true);
     }
+
+    public function TokenWithMail($mail) {
+        return $this->query("
+        SELECT register_token from {$this->table} where mail = ?", [$mail], true);
+    }
+
+    public function allWithMail($mail) {
+        return $this->query("
+        SELECT * from {$this->table} where mail = ?",
+            [$mail], true);
+    }
+
+    public function Checklocked($pseudo) {
+        return $this->query("
+        SELECT locked from {$this->table} where pseudo = ?", [$pseudo], true);
+    }
+
 
     public function UpdadeRegistered($pseudo) {
         $table[] = 1;
@@ -60,7 +93,6 @@ class UserModel extends Model
 
     public function CheckAdmin($var) {
         $req = $this->query("SELECT * FROM USER WHERE pseudo = ?", [$var['pseudo']], true);
-//        Debug::getInstance()->vd($req);
         if ($req && $var['pseudo'] === $req->pseudo) {
             if (hash('whirlpool', $var['passwd']) === $req->passwd) {
                 if ($req->admin === '1')

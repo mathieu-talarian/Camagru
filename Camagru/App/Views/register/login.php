@@ -16,4 +16,7 @@
 <!--        </label>-->
         <button name="action" type="submit" value="ok">Sign in</button>
     </form>
+    <form action="index.php" method="get">
+        <button type="submit" name="p" value="register.newmdp">Forgot password?</button>
+    </form>
 </div>

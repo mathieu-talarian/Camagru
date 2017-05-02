@@ -5,7 +5,11 @@
 (function () {
     var gallery = document.getElementById('heart');
     var form = document.getElementById('comm');
+    var lk = document.getElementById('like');
+    var dl = document.getElementById('dislike');
     gallery.removeChild(form);
+    gallery.removeChild(lk);
+    gallery.removeChild(dl);
     function extract_url() {
         var t = location.search.substring(1).split('&');
         var f = [];
@@ -71,6 +75,34 @@
         return xhr;
     }
 
+    var button_to_add = function(rep) {
+        console.log('rep', rep);
+        if (rep.length === 0) {
+            return (lk.cloneNode(true));
+        }
+        else {
+            return (dl.cloneNode(true));
+        }
+    };
+
+    var like_dl = function(callback, image_id) {
+        var a;
+        var xhr = getXMLHTTPRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && (xhr.status == 200 || xhr.status == 0)) {
+                a = callback(xhr.responseText);
+                console.log('a', a);
+                return a;
+            }
+            else {
+                // alert ('probleme de connection avec le serveur');
+            }
+        };
+        xhr.open('POST', 'index.php?p=image.userlikeimage');
+        var form = new FormData();
+        form.append('image_id', image_id);
+        xhr.send(form);
+    }
 
     var create_pages = function(nbr) {
         nbr = nbr / 10;
@@ -83,16 +115,19 @@
         }
     }
 
-    var callback = function (dt) {
+    var photos_comms_likes = function (dt) {
         var core = document.createElement('div');
         core.id = 'core';
         core.className = 'core';
         core.setAttribute('overflow', 'scollable');
         gallery.appendChild(core);
-        datas = JSON.parse(dt);
+        var datas = JSON.parse(dt);
         for(var i = 0; i < datas.length; i++) {
-            var f = form.cloneNode(true);
             var data = datas[i];
+            var f = form.cloneNode(true);
+            console.log('iiii ', like_dl(button_to_add, data.id));
+
+
             var div = document.createElement('div');
             var img = document.createElement('img');
             var infos = document.createElement('div');
@@ -106,14 +141,35 @@
             champ.setAttribute('value', data.id);
             div.appendChild(infos);
             div.appendChild(img);
+            // div.appendChild(l);
             div.appendChild(f);
             core.appendChild(div);
             fillcomments(div, data.id, comments);
         }
     };
 
-    var fillcomments = function(div, id, callback) {
+    var likes = function(callback, photo_id) {
+        var xhr = getXMLHTTPRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && (xhr.status == 200 || xhr.status == 0)) {
+                callback(xhr.responseText);
+            }
+            else {
+                // alert ('probleme de connection avec le serveur');
+            }
+        };
+        xhr.open('POST', 'index.php?p=image.like', true);
+       var form = new FormData();
+       form.append('photo_id', photo_id);
+        xhr.send(form);
+    }
 
+    var use_likes = function(dt) {
+        console.log(dt);
+    }
+
+
+    var fillcomments = function(div, id, callback) {
         var xhr = getXMLHTTPRequest();
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && (xhr.status == 200 || xhr.status == 0)) {
@@ -139,6 +195,7 @@
             var da = document.createElement('div')
             da.setAttribute('style', 'color:white; background: black; margin: 10px 0;')
             da.id = 'commentaire';
+            console.log(data.date);
             da.innerHTML = data.pseudo + ' a commente le ' + data.date + '<br>' + data.contenu;
             comm.appendChild(da);
         }
@@ -146,9 +203,9 @@
     }
 
     all_photos(create_pages);
-    aff_photo(callback);
+    aff_photo(photos_comms_likes);
+    likes(use_likes, 1);
 
     var images = document.querySelectorAll('#image');
-    console.log(images);
 
 }) ();

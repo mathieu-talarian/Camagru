@@ -17,6 +17,7 @@ return array (
         'mail' => 'VARCHAR (255)',
         'passwd' => 'VARCHAR (500)',
         'register_token' => 'VARCHAR(100)',
+        'locked' => 'INT',
         'registered' => 'INT',
         'admin' => 'INT',
         'PRIMARY KEY' => '(id)'
@@ -35,13 +36,13 @@ return array (
         'user_id' => 'INT',
         'date' => 'DATETIME',
         'PRIMARY KEY' => '(id)'
+    ),
+    'lk' => array(
+        'id' => 'INT NOT NULL AUTO_INCREMENT',
+        'user_id' => 'VARCHAR (255)',
+        'image_id' => 'VARCHAR (5000)',
+        'PRIMARY KEY' => '(id)'
     )
-//    'admin' => array (
-//        'id' => 'INT NOT NULL AUTO_INCREMENT',
-//        'name' => 'VARCHAR (255)',
-//        'passwd' => 'VARCHAR (5000)',
-//        'PRIMARY KEY' => '(id)'
-//    )  ,
 //    'user' => array (
 //        'id' => 'INT NOT NULL AUTO_INCREMENT',
 //        'pseudo' => 'VARCHAR (255)',
