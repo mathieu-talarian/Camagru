@@ -21,7 +21,8 @@ class ImageController extends AppController
         $this->loadModel('lk');
     }
 
-    public function delete() {
+    public function delete()
+    {
         $errors = null;
         $id = $_POST['id'];
         $user_id = $_SESSION['auth'];
@@ -32,20 +33,40 @@ class ImageController extends AppController
             $this->image->deletephoto($id);
             unlink($photo_uniqid);
             echo json_encode('Photo effacée');
-        }
-        else {
+        } else {
             echo json_encode('Vous ne pouvez pas effacer cette photo');
         }
     }
 
-    public function like() {
-        $photo_id = $_POST['photo_id'];
-//        Debug::getInstance()->vd($this->lk->getlikesbyphoto($photo_id));
+    public function nb_photo_like()
+    {
+        $p_id = $_POST['photo_id'];
+        $rendu = $this->lk->likes_by_photo($p_id);
+        if ($rendu) {
+            echo $rendu;
+        }
     }
 
-    public function userlikeimage() {
-        $user_id = $_SESSION['auth'];
-        $image_id = $_POST['image_id'];
-        echo $this->lk->userlikeimage($user_id, $image_id);
+    public function user_like_photo()
+    {
+        $p_id = $_POST['photo_id'];
+        $u_id = $_SESSION['auth'];
+        $rendu = $this->lk->if_user_like_photo($p_id, $u_id);
+        if ($rendu)
+            echo $rendu;
+    }
+
+    public function like()
+    {
+        $p_id = $_POST['photo_id'];
+        $u_id = $_SESSION['auth'];
+        $this->lk->new_like($p_id, $u_id);
+    }
+
+    public function dislike()
+    {
+        $p_id = $_POST['photo_id'];
+        $u_id = $_SESSION['auth'];
+        $this->lk->delete_like($p_id, $u_id);
     }
 }

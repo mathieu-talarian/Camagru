@@ -101,6 +101,21 @@ canvas {
     margin: 0px auto;
 }
 
+#likes {
+    font-family: Verdana Sans-Serif;
+    background-color: green;
+    font-size: smaller;
+    height:100px;
+    overflow: scroll;
+}
+
+#nolike {
+    font-family: Verdana Sans-Serif;
+    font-size: smaller;
+    height: 20px;
+    background-color: red;
+}
+
 @media (max-width: 1300px) {
     .player {
         display: flex;
@@ -111,8 +126,10 @@ canvas {
         display: flex;
         flex-direction: row;
     }
-    
+
 }
+
+
 
 
 @media (max-width: 1000px) {

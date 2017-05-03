@@ -115,7 +115,7 @@ class RegisterController extends AppController
         \n
         \n
         \n
-        http://localhost:8080/cam_gh/Camagru/index.php?p=register.register&ps={$pseudo}&tk={$token}");
+        http://localhost:8080/Camagru/index.php?p=register.register&ps={$pseudo}&tk={$token}");
     }
 
     public function logout()
@@ -224,7 +224,7 @@ class RegisterController extends AppController
         $id = $this->user->TokenWithMail($mail);
         $subject = "Camagru - reinitialisation mot de passe";
         $message = "Pour reinitialiser votre mot de passe, veuillez cliquer sur le lien ci dessous\n\n\n
-        http://localhost:8080/cam_gh/camagru/index.php?p=register.reinit&id=" . $id->register_token ."&mail=" . htmlspecialchars($mail);
+        http://localhost:8080/camagru/index.php?p=register.reinit&id=" . $id->register_token ."&mail=" . htmlspecialchars($mail);
         mail($mail, $subject, $message);
     }
 

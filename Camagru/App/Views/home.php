@@ -8,6 +8,5 @@
 
 ?>
 
-<h1>Bienvenue sur camagru</h1>
-<p>Ici une petite photo qui va bien</p>
+<h1>Camagru</h1>
 
